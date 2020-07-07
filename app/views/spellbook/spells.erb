@@ -1,0 +1,7 @@
+<% @spells.each.with_index(1) do |spell, index| %>
+<%= index %>. <%= spell.name %><br>
+<form action= "/spells/<%= spell.id %>" method= 'get'>
+<input type= 'submit' value = 'More info'> <br>
+</form> 
+<%= "---------------------- "%><br>
+<% end %>
