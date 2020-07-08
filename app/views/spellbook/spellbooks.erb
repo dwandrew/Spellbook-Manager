@@ -5,10 +5,10 @@ Book Name: <%= book.book_name %> <br>
 Number of Spells: <%= book.spells.length %><br>
 <form method='get' action = '/spellbooks/<%= book.id %>'>
 <input type="submit" value="Furthur information/ View Spells ">
-</form><br>
+</form>
 
 <form method='get' action = '/spellbooks/<%= book.id %>/edit'>
-<input type="submit" value="Edit Spellbook"></form><br>
+<input type="submit" value="Edit Spellbook"></form>
 
 <form method='post' action = '/spellbooks/delete/<%= book.id %>'>
 <input type="hidden" name="_method" value="delete" >

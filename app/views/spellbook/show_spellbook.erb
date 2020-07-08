@@ -1,4 +1,4 @@
-<h1> Will show and list each individual spellbook, and contents as collapsable panels </h1>
+<h1> Welcome to <%= @spellbook.book_name  %>, click on any of the spell names to see full details. </h1><br>
 <p><%= @spellbook.book_name  %></p><br>
 <% @spellbook.spells.sort_by{|spell| spell[:level]}.each do |spell| %>
 <button type="button" class="collapsible"><%= spell.name %></button>

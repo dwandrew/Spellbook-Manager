@@ -1,0 +1,20 @@
+<form method= 'POST' action ='/spellbooks/<%= @book.id %>'>
+<input type="hidden" name="_method" value="patch">
+
+<label for='spellbook_name'> Spell Book Name: </label><br>
+<input type="text" name ='update_book[book_name]' id='spellbook_name' value = <%= @book.book_name %> required><br>
+<h2>-----------------------</h2>
+
+ <% @spell_list.each do |spell| %>
+<% if @book.spells.include? spell %>
+ <label for= <%="#{spell.name}"%> ><%="#{spell.name}"%> <br>Level: <%="#{spell.level}"%> </label>
+ <input type='checkbox' name=update_book[spells][<%="#{spell.name}"%>] id=<%="#{spell.name}"%> value = <%="#{spell.id}"%> checked><br>
+ <% else %>
+ <label for= <%="#{spell.name}"%> ><%="#{spell.name}"%> <br>Level: <%="#{spell.level}"%> </label>
+ <input type='checkbox' name=update_book[spells][<%="#{spell.name}"%>] id=<%="#{spell.name}"%> value = <%="#{spell.id}"%> ><br>
+ <% end %>
+ <a href="/spells/<%="#{spell.id}"%>" target="_blank">More Info</a><br>
+ <%="----------" %><br>
+ <% end %>
+<input type="submit" value ="Select Spells">
+</form>
