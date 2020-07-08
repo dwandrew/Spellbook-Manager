@@ -45,6 +45,14 @@ class UserController < ApplicationController
         end
     end
 
+    get '/spellbooks' do
+      if logged_in?
+        erb :'spellbook/spellbooks'
+      else 
+        login_error
+      end
+    end
+
 
     get '/logout' do
         if logged_in?

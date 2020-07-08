@@ -1,0 +1,15 @@
+<form method= 'POST' action ='/spellbooks/finish'>
+<label for='spellbook_name'>Spell Book Name: </label><br>
+<input type="text" name ='new_book[spellbook_name]' id='spellbook_name' value = 'Spellbook Name'><br>
+<h2>-----------------------</h2>
+
+
+
+ <% @spell_list.each do |spell| %>
+ <label for= <%="#{spell.name}"%> ><%="#{spell.name}"%> <br>Level: <%="#{spell.level}"%> </label>
+ <input type='checkbox' name=new_book[spells][<%="#{spell.name}"%>] id=<%="#{spell.name}"%> value = <%="#{spell.id}"%> ><br>
+ <a href="/spells/<%="#{spell.id}"%>" target="_blank">More Info</a><br>
+ <%="----------" %><br>
+ <% end %>
+ <input type="submit" value ="Select Spells">
+ </form>

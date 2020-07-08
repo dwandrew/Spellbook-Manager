@@ -14,6 +14,7 @@ class Spells < ActiveRecord::Migration
       t.string :level
       t.string :school
       t.string :classes
+      t.integer :spellbook_id
     end
   end
 end

@@ -1,0 +1,16 @@
+<h1> This page will hopefully show the users spellbooks, as fingers crossed clickable links <h1>
+<% Spellbook.all.select {|book| book.user_id == current_user.id}.each do |book|%>
+<% binding.pry %>
+Book Name: <%= book.book_name %> <br>
+Number of Spells: <%= book.spells.length %><br>
+<a href = '/spellbooks/<%= book.id %>'> Furthur information/ View Spells </a><br>
+<h2> ---------- </h2>
+<% end %>
+
+<ul>
+   <li> <a href = '/'> Home </a>  </li>
+   <li> <a href = '/spells'> Spells list </a> </li>
+   <li> <a href = '/spellbooks'> Spellbooks </a> </li>
+   <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
+   <li> <a href= '/logout'> Logout </a>  </li>
+</ul>

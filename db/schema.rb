@@ -14,10 +14,8 @@
 ActiveRecord::Schema.define(version: 20200707173104) do
 
   create_table "spellbooks", force: :cascade do |t|
-    t.integer  "spell_id"
     t.integer  "user_id"
     t.string   "book_name"
-    t.string   "book_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +34,7 @@ ActiveRecord::Schema.define(version: 20200707173104) do
     t.string  "level"
     t.string  "school"
     t.string  "classes"
+    t.integer "spellbook_id"
   end
 
   create_table "users", force: :cascade do |t|
