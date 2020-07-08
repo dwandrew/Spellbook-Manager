@@ -2,7 +2,12 @@ class UserController < ApplicationController
 
 
     get '/signup' do
+      if logged_in?
+        flash[:error] = "Already Logged in, log out to create new profile"
+        redirect to '/'
+      else
         erb :'user/signup'
+      end
       end
     
     

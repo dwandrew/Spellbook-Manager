@@ -26,6 +26,16 @@
         <%= yield %>
 
       <footer class="branding">
+        <% if logged_in? %>
+          <ul>
+            <li> <a href = '/'> Home </a>  </li>
+            <li> <a href = '/spells'> Spells list </a> </li>
+            <li> <a href = '/spellbooks'> Spellbooks </a> </li>
+            <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
+            <li> <a href= '/logout'> Logout </a>  </li>
+          </ul>
+        <% end %>
+
         <small>&copy; 2020 <strong>Spellbook</strong></small>
       </footer>
     </div>
