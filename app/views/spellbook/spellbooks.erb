@@ -1,9 +1,19 @@
-<h1> This page will hopefully show the users spellbooks, as fingers crossed clickable links <h1>
+<h1> Spell Books for <%= current_user.username %> </h1>
 <% Spellbook.all.select {|book| book.user_id == current_user.id}.each do |book|%>
-<% binding.pry %>
+<% #binding.pry %>
 Book Name: <%= book.book_name %> <br>
 Number of Spells: <%= book.spells.length %><br>
-<a href = '/spellbooks/<%= book.id %>'> Furthur information/ View Spells </a><br>
+<form method='get' action = '/spellbooks/<%= book.id %>'>
+<input type="submit" value="Furthur information/ View Spells ">
+</form><br>
+
+<form method='get' action = '/spellbooks/<%= book.id %>/edit'>
+<input type="submit" value="Edit Spellbook"></form><br>
+
+<form method='post' action = '/spellbooks/delete/<%= book.id %>'>
+<input type="hidden" name="_method" value="delete" >
+<input type="submit" value="Delete Spell Book">
+</form><br>
 <h2> ---------- </h2>
 <% end %>
 

@@ -68,13 +68,13 @@
   }
 
   .collapsible {
-    background-color: rgb(173, 169, 169);
+    background-color: rgb(70, 170, 67);
     color: white;
     cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
+    padding: 10px;
+    width: 15%;
+    border: solid;
+    text-align: center;
     outline: none;
     font-size: 15px;
   }

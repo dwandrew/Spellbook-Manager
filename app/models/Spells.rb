@@ -1,3 +1,4 @@
 class Spell < ActiveRecord::Base
-    belongs_to :spellbook
+    has_many :spellbook_spells
+    has_many :spellbooks, through: :spellbook_spells
 end

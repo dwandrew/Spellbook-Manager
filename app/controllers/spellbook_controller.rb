@@ -30,8 +30,8 @@ class SpellbookController < ApplicationController
     post '/spellbooks/type' do
       if logged_in?
         if params.values
-        type = params.values[0]
-        @spell_list = Spell.all.select{|spell| spell if spell.classes.include? type}.sort_by{|spell| spell[:level]}
+        @type = params.values[0]
+        @spell_list = Spell.all.select{|spell| spell if spell.classes.include? @type}.sort_by{|spell| spell[:level]}
           erb :'/spellbook/select_spells'
         else 
           flash[:error] = "Please Select a Class for the spellbook"
@@ -44,13 +44,12 @@ class SpellbookController < ApplicationController
 
     post '/spellbooks/finish' do
       if logged_in?
-        new_book = Spellbook.create(book_name: params[:new_book][:spellbook_name], user: current_user)
+        new_book = Spellbook.create(book_name: params[:new_book][:book_name], book_class: params[:new_book][:book_class], user: current_user)
         spells_list = []
         params[:new_book][:spells].values.each do |value|
         Spell.all.select {|spell| spells_list << spell if spell.id == value.to_i }
         end
         new_book.spells = spells_list
-        binding.pry
         new_book.save
         redirect to '/spellbooks'
       else
@@ -58,7 +57,6 @@ class SpellbookController < ApplicationController
       end
     end
       
-  
 
     get '/spellbooks/:id' do
       if logged_in?
@@ -100,17 +98,20 @@ class SpellbookController < ApplicationController
       #   end
       # end
     
-      # delete "/post/:id" do
-      #   post = Post.find(params[:id])
-      #   user = current_user
-      #   if user.id == post.user_id
-      #   post.delete
-      #   redirect to '/posts'
-      #   else 
-      #     flash[:error] = "Sorry you do not have permission to do that"
-      #     redirect to '/posts'
-      #   end
-      # end
+      delete "/spellbooks/delete/:id" do
+        if logged_in?
+          book = Spellbook.find_by_id(params[:id])
+          user = current_user
+          if user.id == book.user_id
+          book.delete
+          redirect to '/spellbooks'
+          else 
+            flash[:error] = "Sorry you do not have permission to do that"
+            redirect to '/books'
+          end
+          else login_error
+        end
+      end
 end
 
 

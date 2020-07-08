@@ -1,15 +1,15 @@
 <h1> Will show and list each individual spellbook, and contents as collapsable panels </h1>
-<%= @spellbook.book_name  %>
+<p><%= @spellbook.book_name  %></p><br>
 <% @spellbook.spells.sort_by{|spell| spell[:level]}.each do |spell| %>
 <button type="button" class="collapsible"><%= spell.name %></button>
-<div class="content">
+<div class="collapse_content">
   <p>
 Spell name: <%= spell.name %> <br>
 Spell level: <%= spell.level %> <br>
 Spell school: <%= spell.school %> <br>
 Spell classes: <%= spell.classes %> <br>
 Spell desciption: <%= spell.desc %> <br>
-Spell at higher levels: <%= spell.higher_level %> <br>
+Spell at higher levels: <%= spell.higher_level ? spell.higher_level : 'n\\a' %> <br>
 Spell range: <%= spell.range %> <br>
 Spell components: <%= spell.components %> <br>
 Spell materials: <%= spell.material %> <br>
@@ -19,7 +19,6 @@ Spell duration: <%= spell.duration %> <br>
 Spell casting time: <%= spell.casting_time %> <br>
   </p>
 </div>
-<h2> ----------------------- </h2><br>
 <% end %>
 
 
@@ -30,3 +29,20 @@ Spell casting time: <%= spell.casting_time %> <br>
    <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
    <li> <a href= '/logout'> Logout </a>  </li>
 </ul>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>

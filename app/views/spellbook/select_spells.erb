@@ -1,6 +1,6 @@
 <form method= 'POST' action ='/spellbooks/finish'>
 <label for='spellbook_name'>Spell Book Name: </label><br>
-<input type="text" name ='new_book[spellbook_name]' id='spellbook_name' value = 'Spellbook Name'><br>
+<input type="text" name ='new_book[book_name]' id='spellbook_name' placeholder = 'Spellbook Name' required><br>
 <h2>-----------------------</h2>
 
 
@@ -11,5 +11,6 @@
  <a href="/spells/<%="#{spell.id}"%>" target="_blank">More Info</a><br>
  <%="----------" %><br>
  <% end %>
- <input type="submit" value ="Select Spells">
- </form>
+    <input type="hidden" name="new_book[book_class]" value=<%= "#{@type}" %>>
+    <input type="submit" value ="Select Spells">
+</form>

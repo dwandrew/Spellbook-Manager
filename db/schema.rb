@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200707173104) do
+ActiveRecord::Schema.define(version: 20200708131630) do
+
+  create_table "spellbook_spells", force: :cascade do |t|
+    t.integer  "spell_id"
+    t.integer  "spellbook_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "spellbooks", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "book_name"
+    t.string   "book_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
