@@ -58,6 +58,48 @@ class UserController < ApplicationController
       end
     end
 
+    get '/newspell' do
+      if logged_in?
+        erb :'user/new_spell'
+      else
+        login_error
+      end
+    end
+
+    post '/newspell' do
+      if logged_in?
+        spell = current_user.newspell.build
+        spell.name = params[:newspell][:name]
+        spell.level = params[:newspell][:level]
+        spell.school = params[:newspell][:school]
+        spell.classes = params[:newspell][:classes].join(", ")
+        spell.range = params[:newspell][:range]
+        spell.components = params[:newspell][:components].join(", ")
+        spell.materials = params[:newspell][:material]
+        params[:newspell][:ritual] == 'on' ? spell.ritual = true : spell.ritual = false
+        params[:newspell][:concentration] == 'on' ? spell.concentration = true : spell.concentration = false
+        spell.duration = params[:newspell][:duration]
+        spell.casting_time = params[:newspell][:casting_time]
+        spell.desc = params[:newspell][:desc]
+        params[:newspell][:higher_level] ? spell.higher_level = params[:newspell][:higher_level] : spell.higher_level = "n/a"
+        spell.save
+        redirect to '/userspells'
+      else
+        login_error
+      end
+
+    end
+
+    get '/userspells' do
+      if logged_in?
+        @spells = current_user.newspells
+        erb :'/user/user_spells'
+      else
+        login_error
+      end
+
+    end
+
 
     get '/logout' do
         if logged_in?

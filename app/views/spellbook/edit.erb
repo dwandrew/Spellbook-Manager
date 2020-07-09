@@ -1,5 +1,5 @@
 <form method= 'POST' action ='/spellbooks/<%= @book.id %>'>
-<input type="hidden" name="_method" value="patch">gi
+<input type="hidden" name="_method" value="patch">
 
 <label for='spellbook_name'> Spell Book Name: </label><br>
 <input type="text" name ='update_book[book_name]' id='spellbook_name' value = "<%= @book.book_name %>" required><br>

@@ -8,15 +8,19 @@ Spell name: <%= spell.name %> <br>
 Spell level: <%= spell.level %> <br>
 Spell school: <%= spell.school %> <br>
 Spell classes: <%= spell.classes %> <br>
-Spell desciption: <%= spell.desc %> <br>
-Spell at higher levels: <%= spell.higher_level ? spell.higher_level : 'n\\a' %> <br>
 Spell range: <%= spell.range %> <br>
 Spell components: <%= spell.components %> <br>
 Spell materials: <%= spell.material %> <br>
-Spell ritual: <%= spell.ritual %> <br>
-Spell concentration: <%= spell.concentration %> <br>
+Can be cast as a ritual: <%= spell.ritual ? "Yes" : "No" %> <br>
+Spell concentration required: <%= spell.concentration ? "Required" : "Not Required" %> <br>
 Spell duration: <%= spell.duration %> <br>
 Spell casting time: <%= spell.casting_time %> <br>
+
+<br>
+Spell description: <%= spell.desc %> <br>
+<br>
+Spell at higher levels: <%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
+<br>
   </p>
 </div>
 <% end %>

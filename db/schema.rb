@@ -11,13 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200708131630) do
+ActiveRecord::Schema.define(version: 20200709101905) do
+
+  create_table "newspells", force: :cascade do |t|
+    t.string   "name"
+    t.string   "level"
+    t.string   "school"
+    t.string   "classes"
+    t.string   "range"
+    t.string   "components"
+    t.string   "materials"
+    t.boolean  "ritual"
+    t.boolean  "concentration"
+    t.string   "duration"
+    t.string   "casting_time"
+    t.string   "desc"
+    t.string   "higher_level"
+    t.integer  "spellbook_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "spellbook_spells", force: :cascade do |t|
     t.integer  "spell_id"
     t.integer  "spellbook_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "newspell_id"
   end
 
   create_table "spellbooks", force: :cascade do |t|

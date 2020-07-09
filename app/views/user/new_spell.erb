@@ -1,0 +1,94 @@
+<form method="post" action='/newspell'>
+
+<label for="name">Spell name:</label>
+<input type="text" id="name" name="newspell[name]" placeholder="Spell name" required> <br>
+<br>
+<label for="spell_level">Spell Level:</label>
+  <select id="spell_level" name="newspell[level]" required>
+    <option value="cantrip" selected>Cantrip</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+  </select>
+<br>
+
+<label for="school">Spell school:</label>
+<select id="school" name="newspell[school]"  required>
+<option value= "Conjuration">Conjuration</option>
+<option value= "Necromancy">Necromancy</option>
+<option value= "Evocation">Evocation</option>
+<option value= "Abjuration">Abjuration</option>
+<option value= "Transmutation">Transmutation</option>
+<option value= "Divination">Divination</option>
+<option value= "Enchantment">Enchantment</option>
+<option value= "Illusion">Illusion</option>
+    </select>
+<br>
+<p> Spell classes:<br>
+<label for="Bard">Bard</label>
+<input type="checkbox" id="Bard" name="newspell[classes][]" value="Bard"> 
+<label for="Cleric">Cleric</label>
+<input type="checkbox" id ="Cleric" name="newspell[classes][]" value="Cleric">
+<label for="Druid">Druid</label>
+<input type="checkbox" id ="Druid" name="newspell[classes][]" value="Druid">
+<label for="Paladin">Paladin</label>
+<input type="checkbox" id ="Paladin" name="newspell[classes][]" value="Paladin">
+<label for="Ranger">Ranger</label>
+<input type="checkbox" id ="Ranger" name="newspell[classes][]" value="Ranger">
+<label for="Sorcerer">Sorcerer</label>
+<input type="checkbox" id ="Sorcerer" name="newspell[classes][]" value="Sorcerer">
+<label for="Warlock">Warlock</label>
+<input type="checkbox" id ="Warlock" name="newspell[classes][]" value="Warlock">
+<label for="Wizard">Wizard</label>
+<input type="checkbox" id ="Wizard" name="newspell[classes][]" value="Wizard">
+ </p>
+
+<label for="range">Spell range:</label>
+<input type="text" id="range" name="newspell[range]" placeholder="Spell range" required> <br>
+
+<p>Spell components: <br>
+<label for="Verbal"> Verbal </label>
+<input type="checkbox" id="Verbal" name="newspell[components][]" value="V"> <br>
+<label for="Somantic"> Somantic </label>
+<input type="checkbox" id="Somantic" name="newspell[components][]" value="S"> <br>
+<label for="Material"> Material </label>
+<input type="checkbox" id="Material" name="newspell[components][]" value="M"> <br>
+</p>
+
+<label for="material">Spell materials:</label>
+<input type="text" id="material" name="newspell[material]" placeholder="Spell material" required> <br>
+
+<label for="ritual">Can be cast as Ritual? </label>
+<input type="checkbox" id="ritual" name="newspell[ritual]" placeholder="Spell ritual"> <br>
+
+<label for="concentration">Spell concentration required? </label>
+<input type="checkbox" id="concentration" name="newspell[concentration]" placeholder="Spell concentration required?"> <br>
+
+<label for="duration">Spell duration:</label>
+<input type="text" id="duration" name="newspell[duration]" placeholder="Spell duration"  required> <br>
+
+<label for="casting_time">Casting time:</label>
+  <select id="casting_time" name="newspell[casting_time]" required>
+    <option value="1 action" selected>1 Action</option>
+    <option value="bonus action">Bonus Action</option>
+    <option value="reaction">Reaction</option>
+    <option value="1 minute">1 Minute</option>
+    <option value="1 hour">1 Hour</option>
+    <option value="12 hours">12 Hours</option>
+    </select>
+<br>
+
+<label for="desc">Spell description:</label>
+<textarea id="desc" name="newspell[desc]" placeholder="Spell description"  required> </textarea> <br>
+
+<label for="higher_level">Spell effect at higher level:</label>
+<textarea id="higher_level" name="newspell[higher_level]" placeholder="Spell higher level"  required> </textarea>  <br>
+
+<input type='submit' value = 'Create New Spell'>
+</form>
