@@ -68,20 +68,20 @@ class UserController < ApplicationController
 
     post '/newspell' do
       if logged_in?
-        spell = current_user.newspell.build
+        spell = current_user.newspells.build
         spell.name = params[:newspell][:name]
         spell.level = params[:newspell][:level]
         spell.school = params[:newspell][:school]
         spell.classes = params[:newspell][:classes].join(", ")
         spell.range = params[:newspell][:range]
         spell.components = params[:newspell][:components].join(", ")
-        spell.materials = params[:newspell][:material]
+        spell.material = params[:newspell][:material]
         params[:newspell][:ritual] == 'on' ? spell.ritual = true : spell.ritual = false
         params[:newspell][:concentration] == 'on' ? spell.concentration = true : spell.concentration = false
         spell.duration = params[:newspell][:duration]
         spell.casting_time = params[:newspell][:casting_time]
         spell.desc = params[:newspell][:desc]
-        params[:newspell][:higher_level] ? spell.higher_level = params[:newspell][:higher_level] : spell.higher_level = "n/a"
+        params[:newspell][:higher_level] ? spell.higher_level = params[:newspell][:higher_level] : spell.higher_level = "n//a"
         spell.save
         redirect to '/userspells'
       else

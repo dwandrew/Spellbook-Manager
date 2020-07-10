@@ -24,7 +24,7 @@ spells= API.get_library("spells")
          spell_info= API.get_url(spell['url'], "spells")
          created = Spell.new(
             name: spell_info["name"],
-            desc: spell_info["desc"].join(", "),
+            desc: spell_info["desc"].join(" <br>"),
             range: spell_info["range"],
             components: spell_info["components"].join(", "),
             material: spell_info["material"],

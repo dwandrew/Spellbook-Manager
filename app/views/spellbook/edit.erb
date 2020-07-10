@@ -5,11 +5,69 @@
 <input type="text" name ='update_book[book_name]' id='spellbook_name' value = "<%= @book.book_name %>" required><br>
 <h2>-----------------------</h2>
 
+
+<table class="spell_table">
+    <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Spell Details</th>
+        <th>Add/Remove Spell</th>
+    </tr>
+
  <% @spell_list.each do |spell| %>
- <label for= <%="#{spell.name}"%> ><%="#{spell.name}"%> <br>Level: <%="#{spell.level}"%> </label>
- <input type='checkbox' name=update_book[spells][<%="#{spell.name}"%>] id=<%="#{spell.name}"%> value = <%="#{spell.id}"%> <%= 'checked' if @book.spells.include? spell %> ><br>
- <a href="/spells/<%="#{spell.id}"%>" target="_blank">More Info</a><br>
- <%="----------" %><br>
- <% end %>
+<% spell %>
+<tr>
+ <td><%= spell.name %></td>
+ <td><%= spell.level == "0" ? "Cantrip" : spell.level %> </td>
+ 
+    <td>
+        <button type="button" class="collapsible"> Spell Details </button>
+        <div class="collapse_content">
+            <p>
+                <strong>Spell name:</strong> <%= spell.name %> <br>
+                <strong>Spell level:</strong> <%= spell.level == "0" ? "Cantrip" : spell.level %> <br>
+                <strong>Spell school:</strong> <%= spell.school %> <br>
+                <strong>Spell classes:</strong> <%= spell.classes %> <br>
+                <strong>Spell range:</strong> <%= spell.range %> <br>
+               <strong> Spell components:</strong> <%= spell.components %> <br>
+                <strong>Spell materials: </strong><%= spell.material ? spell.material : "None Needed" %> <br>
+                <strong>Can be cast as a ritual:</strong> <%= spell.ritual ? "Yes" : "No" %> <br>
+                <strong>Spell concentration required: </strong><%= spell.concentration ? "Required" : "Not Required" %> <br>
+                <strong>Spell duration:</strong> <%= spell.duration %> <br>
+                <strong>Spell casting time: </strong><%= spell.casting_time %> <br>
+                <br>
+                <strong>Spell desciption:</strong> <%= spell.desc %> <br>
+                <br>
+                <strong>Spell at higher levels: </strong><%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
+            </p>
+        </div> 
+        </td>
+
+    <td>  <input type='checkbox' name=update_book[spells][<%="#{spell.name}"%>] id=<%="#{spell.name}"%> value = <%="#{spell.id}"%> <%= 'checked' if @book.spells.include? spell %> ><br></td>
+
+</tr>
+
+<% end %>
+</table>
+
 <input type="submit" value ="Edit Spells">
 </form>
+
+
+
+    <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>

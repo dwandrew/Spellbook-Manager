@@ -1,33 +1,42 @@
 <h1> Welcome to <%= @spellbook.book_name  %>, click on any of the spell names to see full details. </h1><br>
-<p><%= @spellbook.book_name  %></p><br>
+
+<table class="spell_table">
+    <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Spell Details</th>
+    </tr>
 <% @spellbook.spells.sort_by{|spell| spell[:level]}.each do |spell| %>
-<button type="button" class="collapsible"><%= spell.name %></button>
-<div class="collapse_content">
+
+<tr>
+ <td><%= spell.name %></td>
+ <td><%= spell.level == "0" ? "Cantrip" : spell.level %> </td>
+<td>
+<button type="button" class="collapsible"> Spell Details </button>
+  <div class="collapse_content">  
   <p>
-Spell name: <%= spell.name %> <br>
-Spell level: <%= spell.level %> <br>
-Spell school: <%= spell.school %> <br>
-Spell classes: <%= spell.classes %> <br>
-Spell range: <%= spell.range %> <br>
-Spell components: <%= spell.components %> <br>
-Spell materials: <%= spell.material %> <br>
-Can be cast as a ritual: <%= spell.ritual ? "Yes" : "No" %> <br>
-Spell concentration required: <%= spell.concentration ? "Required" : "Not Required" %> <br>
-Spell duration: <%= spell.duration %> <br>
-Spell casting time: <%= spell.casting_time %> <br>
-
-<br>
-Spell description: <%= spell.desc %> <br>
-<br>
-Spell at higher levels: <%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
-<br>
-  </p>
-</div>
+      <strong>Spell name:</strong> <%= spell.name %> <br>
+      <strong>Spell level:</strong> <%= spell.level == "0" ? "Cantrip" : spell.level %> <br>
+      <strong>Spell school:</strong> <%= spell.school %> <br>
+      <strong>Spell classes:</strong> <%= spell.classes %> <br>
+      <strong>Spell range:</strong> <%= spell.range %> <br>
+      <strong> Spell components:</strong> <%= spell.components %> <br>
+      <strong>Spell materials: </strong><%= spell.material ? spell.material : "None Needed" %> <br>
+      <strong>Can be cast as a ritual:</strong> <%= spell.ritual ? "Yes" : "No" %> <br>
+      <strong>Spell concentration required: </strong><%= spell.concentration ? "Required" : "Not Required" %> <br>
+      <strong>Spell duration:</strong> <%= spell.duration %> <br>
+      <strong>Spell casting time: </strong><%= spell.casting_time %> <br>
+      <br>
+      <strong>Spell desciption:</strong> <%= spell.desc %> <br>
+      <br>
+      <strong>Spell at higher levels: </strong><%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
+    </p>
+  </div> <br> </td>
+</tr>
 <% end %>
+</table>
 
-
-
-<script>
+    <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

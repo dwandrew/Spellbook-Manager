@@ -8,7 +8,7 @@ class CreateNewspells < ActiveRecord::Migration
       t.string :classes
       t.string :range
       t.string :components
-      t.string :materials
+      t.string :material
       t.boolean :ritual
       t.boolean :concentration
       t.string :duration

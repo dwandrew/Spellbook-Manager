@@ -1,18 +1,30 @@
 <h1> Spell Books for <%= current_user.username %> </h1>
+
+<table>
+    <tr>
+        <th> Book Name </th>
+        <th> Number of Spells </th>
+        <th> View Book Contents </th>
+        <th> Edit Book </th>
+        <th> Delete Book </th>
+    </tr>
 <% Spellbook.all.select {|book| book.user_id == current_user.id}.each do |book|%>
-<% #binding.pry %>
-Book Name: <%= book.book_name %> <br>
-Number of Spells: <%= book.spells.length %><br>
-<form method='get' action = '/spellbooks/<%= book.id %>'>
-<input type="submit" value="Furthur information/ View Spells ">
-</form>
+<tr>
+<td><%= book.book_name %> <br> </td>
+<td><%= book.spells.length %><br></td>
+<td><form method='get' action = '/spellbooks/<%= book.id %>'>
+<input type="submit" value="View Spells ">
+</form></td>
 
-<form method='get' action = '/spellbooks/<%= book.id %>/edit'>
-<input type="submit" value="Edit Spellbook"></form>
+<td><form method='get' action = '/spellbooks/<%= book.id %>/edit'>
+<input type="submit" value="Edit Spellbook"></form></td>
 
-<form method='post' action = '/spellbooks/delete/<%= book.id %>'>
+<td> <form method='post' action = '/spellbooks/delete/<%= book.id %>'>
 <input type="hidden" name="_method" value="delete" >
 <input type="submit" value="Delete Spell Book">
-</form><br>
-<h2> ---------- </h2>
+
+</form></td>
+</tr>
+
 <% end %>
+</table>

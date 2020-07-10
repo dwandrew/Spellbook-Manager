@@ -13,13 +13,92 @@
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
-  <body>
-    <div class="flash_error wrapper">
-        <% if flash[:error] %>
-          <p> <%=flash[:error] %> </p>
-          <% end %>
-      </div>
 
+  <style>
+  body {
+    background-image: url("https://cdn.pixabay.com/photo/2019/03/31/21/43/the-dark-hedges-4094148_1280.jpg");
+    color: #333;
+    font-family: Sans-Serif;
+    line-height: 18px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, td, th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+table, td .collapse_content {
+text-align: left;
+
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2
+  }
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background-color: #473;
+}
+
+
+
+  .collapsible {
+    background-color: rgb(70, 170, 67);
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    width: max-content;
+    border: solid;
+    outline: none;
+    font-size: 15px;
+  }
+ 
+  .active, .collapsible:hover {
+    background-color: rgb(50, 77, 16);
+  }
+  
+  div .collapse_content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+  </style>
+
+
+
+
+  <body>
+  <% if flash[:error] %>
+    <div class="flash_error wrapper">
+        
+          <p> <%=flash[:error] %> </p>
+          
+      </div>
+<% end %>
 
     <div class="wrapper">
 
@@ -27,13 +106,17 @@
 
       <footer class="branding">
         <% if logged_in? %>
+        <div class='navbar'>
           <ul>
             <li> <a href = '/'> Home </a>  </li>
+            <li> <a href= '/newspell'> Create New Spell </a></li>
+            <li> <a href='/userspells'> View <%= current_user.username %>'s Created spells </a></li>
             <li> <a href = '/spells'> Spells list </a> </li>
             <li> <a href = '/spellbooks'> Spellbooks </a> </li>
             <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
             <li> <a href= '/logout'> Logout </a>  </li>
           </ul>
+          </div>
         <% end %>
 
         <small>&copy; 2020 <strong>Spellbook</strong></small>
@@ -45,5 +128,7 @@
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
+
+
   </body>
 </html>

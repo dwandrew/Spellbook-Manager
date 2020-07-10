@@ -29,7 +29,7 @@ class SpellbookController < ApplicationController
 
     post '/spellbooks/type' do
       if logged_in?
-        if params.values
+        if !params.values.empty?
         @type = params.values[0]
         @spell_list = Spell.all.select{|spell| spell if spell.classes.include? @type}.sort_by{|spell| spell[:level]}
           erb :'/spellbook/select_spells'
