@@ -36,7 +36,7 @@ class SpellbookController < ApplicationController
         if !params.values.empty?
         @type = params.values[0]
         @spell_list = Spell.all.select{|spell| spell if spell.classes.include? @type}.sort_by{|spell| spell[:level]}
-        @user_spells = current_user.newspells  
+        @user_spells = current_user.newspells.select{|spell| spell if spell.classes.include? @type}.sort_by{|spell| spell[:level]}
         erb :'/spellbook/select_spells'
         else 
           flash[:error] = "Please Select a Class for the spellbook"
@@ -65,7 +65,7 @@ class SpellbookController < ApplicationController
             end
           end
         new_book.save
-        redirect to '/spellbooks'
+        redirect to "/spellbooks/#{new_book.id}"
         end
       else
         login_error

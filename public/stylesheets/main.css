@@ -159,8 +159,8 @@ div .collapse_content {
     background-color: peru ;
     border: 1px solid #ccc;
     float: right;
-    padding: 3%; /* 5px / 240px */
-    width: 30%; /* 240px / 800px */
+    padding: 15px; 
+    width: 30%;
   }
   footer.menu {
     border-top: 2px solid #ccc;
