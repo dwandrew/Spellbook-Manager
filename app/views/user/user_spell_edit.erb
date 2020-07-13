@@ -1,0 +1,116 @@
+<form method="post" action=/userspell/<%= @spell.id %>>
+<input type="hidden" name="_method" value="patch">
+
+<label for="name">Spell name:</label>
+<input type="text" id="name" name="newspell[name]" value=<%= @spell.name%> required> <br>
+<br>
+<label for="spell_level">Spell Level:</label>
+  <select id="spell_level" name="newspell[level]" required>
+    <option value="0" <%='selected' if @spell.level=="0"%> >Cantrip</option>
+    <option value="1" <%='selected' if @spell.level=="1"%> >1</option>
+    <option value="2" <%='selected' if @spell.level=="2"%> >2</option>
+    <option value="3" <%='selected' if @spell.level=="3"%> >3</option>
+    <option value="4" <%='selected' if @spell.level=="4"%> >4</option>
+    <option value="5" <%='selected' if @spell.level=="5"%> >5</option>
+    <option value="6" <%='selected' if @spell.level=="6"%> >6</option>
+    <option value="7" <%='selected' if @spell.level=="7"%> >7</option>
+    <option value="8" <%='selected' if @spell.level=="8"%> >8</option>
+    <option value="9" <%='selected' if @spell.level=="9"%> >9</option>
+  </select>
+<br>
+
+<label for="school">Spell school:</label>
+<select id="school" name="newspell[school]"  required>
+<option value= "Conjuration" <%='selected' if @spell.school=="Conjuration"%>>Conjuration</option>
+<option value= "Necromancy" <%='selected' if @spell.school=="Necromancy"%>>Necromancy</option>
+<option value= "Evocation" <%='selected' if @spell.school=="Evocation"%>>Evocation</option>
+<option value= "Abjuration" <%='selected' if @spell.school=="Abjuration"%>>Abjuration</option>
+<option value= "Transmutation" <%='selected' if @spell.school=="Transmutation"%>>Transmutation</option>
+<option value= "Divination" <%='selected' if @spell.school=="Divination"%>>Divination</option>
+<option value= "Enchantment" <%='selected' if @spell.school=="Enchantment"%>>Enchantment</option>
+<option value= "Illusion" <%='selected' if @spell.school=="Illusion"%>>Illusion</option>
+    </select>
+<br>
+<p> Spell classes:<br>
+<table>
+  <tr>
+    <th>Class</th>
+    <th>Spell available for class?</th>
+  </tr>
+
+<tr>
+  <td>Bard </td>
+  <td><input type="checkbox" id="Bard" name="newspell[classes][]" value="Bard" <%= 'checked' if @spell.classes.include? "Bard" %> > </td> 
+  </tr> 
+<tr>
+  <td>Cleric </td>
+  <td><input type="checkbox" id ="Cleric" name="newspell[classes][]" value="Cleric" <%= 'checked' if @spell.classes.include? "Cleric" %>> </td>
+  </tr>
+<tr>
+  <td>Druid </td>
+<td><input type="checkbox" id ="Druid" name="newspell[classes][]" value="Druid" <%= 'checked' if @spell.classes.include? "Druid" %>></td>
+</tr>
+<tr>
+  <td>Paladin </td>
+  <td><input type="checkbox" id ="Paladin" name="newspell[classes][]" value="Paladin" <%= 'checked' if @spell.classes.include? "Paladin" %>></td>
+</tr>
+<tr>
+  <td>Ranger </td>
+  <td><input type="checkbox" id ="Ranger" name="newspell[classes][]" value="Ranger" <%= 'checked' if @spell.classes.include? "Ranger" %>></td>
+</tr>
+<tr>
+  <td>Sorcerer </td>
+  <td><input type="checkbox" id ="Sorcerer" name="newspell[classes][]" value="Sorcerer" <%= 'checked' if @spell.classes.include? "Sorcerer" %>></td>
+</tr>
+<tr>
+  <td>Warlock </td>
+  <td><input type="checkbox" id ="Warlock" name="newspell[classes][]" value="Warlock" <%= 'checked' if @spell.classes.include? "Warlock" %>></td>
+</tr>
+<tr>
+  <td>Wizard </td>
+  <td><input type="checkbox" id ="Wizard" name="newspell[classes][]" value="Wizard" <%= 'checked' if @spell.classes.include? "Wizard" %>></td>
+</tr>
+</table>
+ </p>
+
+<label for="range">Spell range:</label>
+<input type="text" id="range" name="newspell[range]" value= <%= @spell.range %> required> <br>
+
+<p>Spell components: <br>
+<label for="Verbal"> Verbal </label>
+<input type="checkbox" id="Verbal" name="newspell[components][]" value="V"<%= 'checked' if @spell.components.include? "V" %>  > <br>
+<label for="Somantic"> Somantic </label>
+<input type="checkbox" id="Somantic" name="newspell[components][]" value="S" <%= 'checked' if @spell.components.include? "S" %>> <br>
+<label for="Material"> Material </label>
+<input type="checkbox" id="Material" name="newspell[components][]" value="M" <%= 'checked' if @spell.components.include? "M" %>> <br>
+</p>
+
+<label for="material">Spell materials:</label>
+<input type="text" id="material" name="newspell[material]" value= <%= @spell.material %> > <br>
+
+<label for="ritual">Can be cast as Ritual? </label>
+<input type="checkbox" id="ritual" name="newspell[ritual]" placeholder="Spell ritual" <%= 'checked' if @spell.ritual == true %> > <br>
+
+<label for="concentration">Spell concentration required? </label>
+<input type="checkbox" id="concentration" name="newspell[concentration]" placeholder="Spell concentration required?" <%= 'checked' if @spell.concentration == true %> > <br>
+
+<label for="duration">Spell duration:</label>
+<input type="text" id="duration" name="newspell[duration]" value= <%= @spell.duration %>  required> <br>
+
+<label for="casting_time">Casting time:</label>
+  <select id="casting_time" name="newspell[casting_time]" required>
+    <option value="1 action" <%= 'selected' if @spell.casting_time == '1 action' %> >1 Action</option>
+    <option value="bonus action" <%= 'selected' if @spell.casting_time == 'bonus action' %> >Bonus Action</option>
+    <option value="reaction" <%= 'selected' if @spell.casting_time == 'reaction' %> >Reaction</option>
+    <option value="1 minute" <%= 'selected' if @spell.casting_time == '1 minute' %> >1 Minute</option>
+    <option value="1 hour" <%= 'selected' if @spell.casting_time == '1 hour' %> >1 Hour</option>
+    <option value="12 hours" <%= 'selected' if @spell.casting_time == '12 hours' %> >12 Hours</option>
+    </select>
+<br>
+
+
+<textarea id="desc" name="newspell[desc]" rows='5' cols = '65' placeholder= "Spell Description" required> <%= @spell.desc%> </textarea> <br>
+<textarea id="higher_level" name="newspell[higher_level]" rows='5' cols = '65' placeholder="Effects at higher level"  > <%= @spell.higher_level %> </textarea>  <br>
+
+<input type='submit' value = 'Edit Spell'>
+</form>

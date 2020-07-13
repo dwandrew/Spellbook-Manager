@@ -1,12 +1,18 @@
 <h1> Welcome to <%= @spellbook.book_name  %>, click on any of the spell names to see full details. </h1><br>
 
+<% full_spell_list = [] %>
+<% full_spell_list << @spellbook.newspells %>
+<% full_spell_list << @spellbook.spells %>
+
 <table class="spell_table">
     <tr>
         <th>Name</th>
         <th>Level</th>
         <th>Spell Details</th>
     </tr>
-<% @spellbook.spells.sort_by{|spell| spell[:level]}.each do |spell| %>
+
+
+<% full_spell_list.flatten.sort_by{|spell| spell[:level]}.each do |spell| %>
 
 <tr>
  <td><%= spell.name %></td>

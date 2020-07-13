@@ -5,7 +5,7 @@
 <br>
 <label for="spell_level">Spell Level:</label>
   <select id="spell_level" name="newspell[level]" required>
-    <option value="cantrip" selected>Cantrip</option>
+    <option value="0" selected>Cantrip</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -31,22 +31,46 @@
     </select>
 <br>
 <p> Spell classes:<br>
-<label for="Bard">Bard</label>
-<input type="checkbox" id="Bard" name="newspell[classes][]" value="Bard"> 
-<label for="Cleric">Cleric</label>
-<input type="checkbox" id ="Cleric" name="newspell[classes][]" value="Cleric">
-<label for="Druid">Druid</label>
-<input type="checkbox" id ="Druid" name="newspell[classes][]" value="Druid">
-<label for="Paladin">Paladin</label>
-<input type="checkbox" id ="Paladin" name="newspell[classes][]" value="Paladin">
-<label for="Ranger">Ranger</label>
-<input type="checkbox" id ="Ranger" name="newspell[classes][]" value="Ranger">
-<label for="Sorcerer">Sorcerer</label>
-<input type="checkbox" id ="Sorcerer" name="newspell[classes][]" value="Sorcerer">
-<label for="Warlock">Warlock</label>
-<input type="checkbox" id ="Warlock" name="newspell[classes][]" value="Warlock">
-<label for="Wizard">Wizard</label>
-<input type="checkbox" id ="Wizard" name="newspell[classes][]" value="Wizard">
+<table>
+  <tr>
+    <th>Class</th>
+    <th>Spell available for class?</th>
+  </tr>
+
+
+<tr>
+  <td>Bard </td>
+  <td><input type="checkbox" id="Bard" name="newspell[classes][]" value="Bard"> </td> 
+  </tr> 
+<tr>
+  <td>Cleric </td>
+  <td><input type="checkbox" id ="Cleric" name="newspell[classes][]" value="Cleric"> </td>
+  </tr>
+<tr>
+  <td>Druid </td>
+<td><input type="checkbox" id ="Druid" name="newspell[classes][]" value="Druid"></td>
+</tr>
+<tr>
+  <td>Paladin </td>
+  <td><input type="checkbox" id ="Paladin" name="newspell[classes][]" value="Paladin"></td>
+</tr>
+<tr>
+  <td>Ranger </td>
+  <td><input type="checkbox" id ="Ranger" name="newspell[classes][]" value="Ranger"></td>
+</tr>
+<tr>
+  <td>Sorcerer </td>
+  <td><input type="checkbox" id ="Sorcerer" name="newspell[classes][]" value="Sorcerer"></td>
+</tr>
+<tr>
+  <td>Warlock </td>
+  <td><input type="checkbox" id ="Warlock" name="newspell[classes][]" value="Warlock"></td>
+</tr>
+<tr>
+  <td>Wizard </td>
+  <td><input type="checkbox" id ="Wizard" name="newspell[classes][]" value="Wizard"></td>
+</tr>
+</table>
  </p>
 
 <label for="range">Spell range:</label>
@@ -62,7 +86,7 @@
 </p>
 
 <label for="material">Spell materials:</label>
-<input type="text" id="material" name="newspell[material]" placeholder="Spell material" required> <br>
+<input type="text" id="material" name="newspell[material]" placeholder="Spell material" > <br>
 
 <label for="ritual">Can be cast as Ritual? </label>
 <input type="checkbox" id="ritual" name="newspell[ritual]" placeholder="Spell ritual"> <br>
@@ -84,11 +108,9 @@
     </select>
 <br>
 
-<label for="desc">Spell description:</label>
-<textarea id="desc" name="newspell[desc]" placeholder="Spell description"  required> </textarea> <br>
 
-<label for="higher_level">Spell effect at higher level:</label>
-<textarea id="higher_level" name="newspell[higher_level]" placeholder="Spell higher level"  required> </textarea>  <br>
+<textarea id="desc" name="newspell[desc]" placeholder="Spell description" rows='5' cols = '65' required></textarea> <br>
+<textarea id="higher_level" name="newspell[higher_level]" placeholder="Spell higher level" rows='5' cols = '65'></textarea>  <br>
 
 <input type='submit' value = 'Create New Spell'>
 </form>

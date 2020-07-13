@@ -68,6 +68,10 @@ class UserController < ApplicationController
 
     post '/newspell' do
       if logged_in?
+        if current_user.newspells.find_by name: params[:newspell][:name]
+          flash[:error] = "Already Spell of that Name"
+          redirect to '/newspell'
+        else
         spell = current_user.newspells.build
         spell.name = params[:newspell][:name]
         spell.level = params[:newspell][:level]
@@ -84,6 +88,7 @@ class UserController < ApplicationController
         params[:newspell][:higher_level] ? spell.higher_level = params[:newspell][:higher_level] : spell.higher_level = "n//a"
         spell.save
         redirect to '/userspells'
+        end
       else
         login_error
       end
@@ -100,6 +105,62 @@ class UserController < ApplicationController
 
     end
 
+    get '/userspells/:id/edit' do
+      if logged_in?
+        @spell = current_user.newspells.find_by_id(params[:id])
+        user = current_user
+          if user.id == @spell.user_id
+            erb :'/user/user_spell_edit'
+          else 
+            flash[:error] = "Sorry you do not have permission to do that"
+            redirect to '/userspells'
+          end
+      else
+        login_error
+      end
+    end
+
+
+    patch "/userspell/:id" do
+      spell= current_user.newspells.find_by_id(params[:id])
+        user = current_user
+        if user.id == spell.user_id
+        spell.name = params[:newspell][:name]
+        spell.level = params[:newspell][:level]
+        spell.school = params[:newspell][:school]
+        spell.classes = params[:newspell][:classes].join(", ")
+        spell.range = params[:newspell][:range]
+        spell.components = params[:newspell][:components].join(", ")
+        spell.material = params[:newspell][:material]
+        params[:newspell][:ritual] == 'on' ? spell.ritual = true : spell.ritual = false
+        params[:newspell][:concentration] == 'on' ? spell.concentration = true : spell.concentration = false
+        spell.duration = params[:newspell][:duration]
+        spell.casting_time = params[:newspell][:casting_time]
+        spell.desc = params[:newspell][:desc]
+        params[:newspell][:higher_level] ? spell.higher_level = params[:newspell][:higher_level] : spell.higher_level = "n//a"
+        spell.save
+          redirect to "/userspells"
+      else 
+          redirect to "/userspells"
+      end
+    end
+  
+
+
+    delete "/userspells/delete/:id" do
+      if logged_in?
+        spell = current_user.newspells.find_by_id(params[:id])
+        user = current_user
+        if user.id == spell.user_id
+        spell.delete
+        redirect to '/userspells'
+        else 
+          flash[:error] = "Sorry you do not have permission to do that"
+          redirect to '/userspells'
+        end
+        else login_error
+      end
+    end
 
     get '/logout' do
         if logged_in?

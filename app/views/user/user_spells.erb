@@ -3,8 +3,10 @@
         <th>Name</th>
         <th>Level</th>
         <th>Spell Details</th>
+        <th>Edit Spell</th>
+        <th>Delete Spell</th>
     </tr>
-<% @spells.each.with_index(1) do |spell, index| %>
+<% @spells.each do |spell| %>
 
 <tr>
  <td><%= spell.name %></td>
@@ -30,7 +32,17 @@
                 <strong>Spell at higher levels: </strong><%= spell.higher_level !="" ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
             </p>
 </div> <br> </td>
+
+<td><form method='get' action = '/userspells/<%= spell.id %>/edit'>
+<input type="submit" value="Edit Spell"></form></td>
+
+
+<td> <form method='post' action = '/userspells/delete/<%= spell.id %>'>
+<input type="hidden" name="_method" value="delete" >
+<input type="submit" value="Delete Spell">
 </tr>
+
+
 
 <% end %>
 
