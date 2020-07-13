@@ -1,3 +1,4 @@
+<div class = "input_new">
 <form method= 'POST' action ='/spellbooks/finish'>
 <h2><label for='spellbook_name'>Spell Book Name: </label><br>
 <input type="text" name ='new_book[book_name]' id='spellbook_name' placeholder = 'Spellbook Name' required></h2>
@@ -101,9 +102,10 @@
 <% end %>
 </table>
     <input type="hidden" name="new_book[book_class]" value=<%= "#{@type}" %>>
-    <input type="submit" value ="Select Spells">
+    <input type="submit" value ="Select Spells" class = "entry_button">
 </form>
 
+</div>
 
 
 

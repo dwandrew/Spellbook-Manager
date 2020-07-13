@@ -143,6 +143,15 @@ div .collapse_content {
     border-bottom: 2px solid #ccc;
   }
 
+  h4 {
+    background-color:peru;
+    border: 2px solid black;
+    padding: 2px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
   p {
     margin-bottom: 18px;
   }
@@ -156,13 +165,30 @@ div .collapse_content {
     width: 60%; /* 480px / 800px */
   }
 
+  .input_new {
+    line-height: 30px;
+  }
 
+  .entry_button{
+    height: 40px;
+    width: 20%;
+  }
   .login {
     background-color: peru ;
     border: 1px solid #ccc;
     float: right;
     padding: 15px; 
     width: 30%;
+  }
+
+  label {
+    background-color:peru;
+    border: 2px solid black;
+    padding: 2px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    font-weight: bold;
   }
   footer.menu {
     border-top: 2px solid #ccc;

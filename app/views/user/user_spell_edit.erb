@@ -1,3 +1,4 @@
+<div class = "input_new">
 <form method="post" action=/userspell/<%= @spell.id %>>
 <input type="hidden" name="_method" value="patch">
 
@@ -31,7 +32,7 @@
 <option value= "Illusion" <%='selected' if @spell.school=="Illusion"%>>Illusion</option>
     </select>
 <br>
-<p> Spell classes:<br>
+<h4> Spell classes: </h4>
 <table>
   <tr>
     <th>Class</th>
@@ -76,18 +77,18 @@
 <label for="range">Spell range:</label>
 <input type="text" id="range" name="newspell[range]" value= <%= @spell.range %> required> <br>
 
-<p>Spell components: <br>
+<h4>Spell components:  </h4>
 <label for="Verbal"> Verbal </label>
 <input type="checkbox" id="Verbal" name="newspell[components][]" value="V"<%= 'checked' if @spell.components.include? "V" %>  > <br>
 <label for="Somantic"> Somantic </label>
 <input type="checkbox" id="Somantic" name="newspell[components][]" value="S" <%= 'checked' if @spell.components.include? "S" %>> <br>
 <label for="Material"> Material </label>
 <input type="checkbox" id="Material" name="newspell[components][]" value="M" <%= 'checked' if @spell.components.include? "M" %>> <br>
-</p>
+
 
 <label for="material">Spell materials:</label>
 <input type="text" id="material" name="newspell[material]" value= <%= @spell.material %> > <br>
-
+</p>
 <label for="ritual">Can be cast as Ritual? </label>
 <input type="checkbox" id="ritual" name="newspell[ritual]" placeholder="Spell ritual" <%= 'checked' if @spell.ritual == true %> > <br>
 
@@ -112,5 +113,7 @@
 <textarea id="desc" name="newspell[desc]" rows='5' cols = '65' placeholder= "Spell Description" required> <%= @spell.desc%> </textarea> <br>
 <textarea id="higher_level" name="newspell[higher_level]" rows='5' cols = '65' placeholder="Effects at higher level"  > <%= @spell.higher_level %> </textarea>  <br>
 
-<input type='submit' value = 'Edit Spell'>
+<input type='submit' value = 'Edit Spell' class = "entry_button">
 </form>
+
+</div>

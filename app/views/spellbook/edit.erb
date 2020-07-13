@@ -1,3 +1,4 @@
+<div class = "input_new">
 <form method= 'POST' action ='/spellbooks/<%= @book.id %>'>
 <input type="hidden" name="_method" value="patch">
 
@@ -50,10 +51,10 @@
 <% end %>
 </table>
 
-<input type="submit" value ="Edit Spells">
+<input type="submit" value ="Edit Spells" class = "entry_button">
 </form>
 
-
+</div>
 
     <script>
 var coll = document.getElementsByClassName("collapsible");
