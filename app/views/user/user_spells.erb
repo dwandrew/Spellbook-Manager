@@ -39,7 +39,7 @@
 
 <td> <form method='post' action = '/userspells/delete/<%= spell.id %>'>
 <input type="hidden" name="_method" value="delete" >
-<input type="submit" value="Delete Spell">
+<input type="submit" value="Delete Spell" onclick="return confirm('Are you sure you want to delete this item?');">
 </tr>
 
 
