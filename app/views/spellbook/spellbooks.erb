@@ -11,7 +11,7 @@
 <% Spellbook.all.select {|book| book.user_id == current_user.id}.each do |book|%>
 <tr>
 <td><%= book.book_name %> <br> </td>
-<td><%= book.spells.length %><br></td>
+<td><%= book.spells.length + book.newspells.length %><br></td>
 <td><form method='get' action = '/spellbooks/<%= book.id %>'>
 <input type="submit" value="View Spells ">
 </form></td>

@@ -94,6 +94,7 @@ class SpellbookController < ApplicationController
           if user.id == @book.user_id
             type = @book.book_class
             @spell_list = Spell.all.select{|spell| spell if spell.classes.include? type}.sort_by{|spell| spell[:level]}
+            @user_spells = current_user.newspells.select{|spell| spell if spell.classes.include? type}.sort_by{|spell| spell[:level]}
             erb :'/spellbook/edit'
           else 
                 flash[:error] = "Sorry you do not have permission to do that"
@@ -112,11 +113,18 @@ class SpellbookController < ApplicationController
           if user.id == book.user_id
             book.update(book_name: params[:update_book][:book_name])
             book.spells.delete_all
-            spells_list = []
+            book.newspells.delete_all
+            if params[:update_book][:spells]
             params[:update_book][:spells].values.each do |value|
-              Spell.all.select {|spell| spells_list << spell if spell.id == value.to_i }
+              Spell.all.select {|spell| book.spells << spell if spell.id == value.to_i }
               end
-            book.spells = spells_list
+            end
+            if params[:new_book]
+                params[:new_book][:user_spells].values.each do |value|
+                  current_user.newspells.select {|spell| book.newspells << spell if spell.id == value.to_i }
+            end
+          end
+            
             book.save
             redirect to "/spellbooks/#{ book.id }"
         else 
