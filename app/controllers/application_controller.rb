@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "chris_Perkins_ftw"
+    set :session_secret, ENV['SINATRA_SECRET']
     register Sinatra::Flash
   end
 
@@ -34,10 +34,6 @@ class ApplicationController < Sinatra::Base
       redirect to "/"
     end
 
-    def no_post
-      flash[:error] = "Sorry, that post does not exist"
-      redirect to '/posts'
-    end
 
   end
 
