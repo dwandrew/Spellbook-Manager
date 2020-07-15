@@ -40,6 +40,7 @@ tr:nth-child(odd){
 width: 100%;
 background-color: #555;
 overflow: auto;
+text-shadow: 2px 2px 4px #000000;
 }
 
 .navbar a {
@@ -117,9 +118,7 @@ div .collapse_content {
 
   .wrapper {
     background-color: moccasin;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    box-shadow: 0px 0px 20px black;
     margin: 60px auto;
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
