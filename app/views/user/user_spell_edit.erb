@@ -3,7 +3,7 @@
 <input type="hidden" name="_method" value="patch">
 
 <label for="name">Spell name:</label>
-<input type="text" id="name" name="newspell[name]" value=<%= @spell.name%> required> <br>
+<input type="text" id="name" name="newspell[name]" value= "<%= @spell.name %>" required> <br>
 <br>
 <label for="spell_level">Spell Level:</label>
   <select id="spell_level" name="newspell[level]" required>
@@ -110,8 +110,8 @@
 <br>
 
 
-<textarea id="desc" name="newspell[desc]" rows='5' cols = '65' placeholder= "Spell Description" required> <%= @spell.desc%> </textarea> <br>
-<textarea id="higher_level" name="newspell[higher_level]" rows='5' cols = '65' placeholder="Effects at higher level"  > <%= @spell.higher_level %> </textarea>  <br>
+<textarea id="desc" name="newspell[desc]" rows='5' cols = '65' placeholder= "Spell Description" required><%= @spell.desc%></textarea> <br>
+<textarea id="higher_level" name="newspell[higher_level]" rows='5' cols = '65' placeholder="Effects at higher level"  ><%= @spell.higher_level %></textarea>  <br>
 
 <input type='submit' value = 'Edit Spell' class = "entry_button">
 </form>

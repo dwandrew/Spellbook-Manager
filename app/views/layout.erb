@@ -18,18 +18,7 @@
   
   </style>
 
-
-
-
-  <body>
-  <% if flash[:error] %>
-    <div class="flash_error wrapper">
-        
-          <p> <%=flash[:error] %> </p>
-          
-      </div>
-<% end %>
- <header class="menu">
+<header class="menu">
         <% if logged_in? %>
         <div class='navbar'>
           <ul>
@@ -42,9 +31,20 @@
             <li style="float:right"> <a href= '/logout'> Logout </a>  </li>
           </ul>
           </div>
+</header>
+
+  <body>
+  <% if flash[:error] %>
+    <div class="flash_error wrapper">
+        
+          <p> <%=flash[:error] %> </p>
+          
+      </div>
+<% end %>
+ 
         <% end %>
       
-      </header>
+      
     <div class="wrapper">
 
         <%= yield %>

@@ -41,6 +41,8 @@ width: 100%;
 background-color: #555;
 overflow: auto;
 text-shadow: 2px 2px 4px #000000;
+position: fixed;
+top: 0;
 }
 
 .navbar a {
@@ -56,6 +58,7 @@ background-color: #473;
 }
 
 input[type=submit] {
+  box-shadow: 0px 0px 5px white;
   background-color: #4CAF50;
   border: none;
   border-radius: 25px;
@@ -68,6 +71,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: rgb(50, 77, 16);
+  box-shadow: 0px 0px 5px black;
 }
 
 textarea  
@@ -86,10 +90,12 @@ textarea
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  box-shadow: 0px 0px 5px black;
 }
 
 .active, .collapsible:hover {
   background-color: rgb(50, 77, 16);
+  box-shadow: 0px 0px 5px white;
 }
 
 div .collapse_content {
@@ -172,13 +178,14 @@ div .collapse_content {
   }
 
   .entry_button{
+    box-shadow: 0px 0px 5px black;
     height: 40px;
     width: 20%;
   }
   .login {
     background-color: peru ;
     border: 1px solid #ccc;
-    float: right;
+    box-shadow: 0px 0px 5px black;
     padding: 15px; 
     width: 30%;
   }
