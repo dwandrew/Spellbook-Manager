@@ -29,12 +29,7 @@
           
       </div>
 <% end %>
-
-    <div class="wrapper">
-
-        <%= yield %>
-
-      <footer class="menu">
+ <header class="menu">
         <% if logged_in? %>
         <div class='navbar'>
           <ul>
@@ -44,14 +39,22 @@
             <li> <a href = '/spells'> Spells list </a> </li>
             <li> <a href = '/spellbooks'> Spellbooks </a> </li>
             <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
-            <li> <a href= '/logout'> Logout </a>  </li>
+            <li style="float:right"> <a href= '/logout'> Logout </a>  </li>
           </ul>
           </div>
         <% end %>
+      
+      </header>
+    <div class="wrapper">
 
-        <small>&copy; 2020 <strong>Spellbook</strong></small>
-      </footer>
+        <%= yield %>
+
+     
+      
     </div>
+    <footer>
+        <small>&copy; 2020 <strong>Spellbook</strong></small>
+        </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>

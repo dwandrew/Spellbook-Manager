@@ -7,21 +7,21 @@ class SpellbookController < ApplicationController
         else 
         login_error
         end
-    end
+     end
 
-    get '/spells/:id' do
-        if logged_in? 
-            if Spell.find_by_id(params[:id])
-            Spell.find_by_id(params[:id])
-            @spell = Spell.find_by_id(params[:id])
-            erb :'/spellbook/show_spell'
-            else flash[:error] = "Sorry No Spell of that ID exists"
-              redirect to '/'
-            end
-        else
-          login_error
-        end
-    end
+    # get '/spells/:id' do
+    #     if logged_in? 
+    #         if Spell.find_by_id(params[:id])
+    #         Spell.find_by_id(params[:id])
+    #         @spell = Spell.find_by_id(params[:id])
+    #         erb :'/spellbook/show_spell'
+    #         else flash[:error] = "Sorry No Spell of that ID exists"
+    #           redirect to '/'
+    #         end
+    #     else
+    #       login_error
+    #     end
+    # end
     
     get '/spellbooks/new' do
       if logged_in?
@@ -148,8 +148,3 @@ class SpellbookController < ApplicationController
       end
 end
 
-
-
-# User.where(weekly_subscriber: true).find_each do |user|
-#   NewsMailer.weekly(user).deliver_now
-# end

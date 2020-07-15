@@ -30,6 +30,7 @@ text-align: left;
 tr:nth-child(even){
 background-color: #f2f2f2
 }
+
 tr:nth-child(odd){
   background-color: wheat;
   }
@@ -48,6 +49,7 @@ color: white;
 text-decoration: none;
 font-size: 17px;
 }
+
 .navbar a:hover {
 background-color: #473;
 }
@@ -122,6 +124,7 @@ div .collapse_content {
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
     width: 85%;
+  
   }
 
   h1 {
@@ -190,8 +193,13 @@ div .collapse_content {
     margin-right: 8px;
     font-weight: bold;
   }
-  footer.menu {
+
+  
+  footer{
     border-top: 2px solid #ccc;
-    margin-top: 245px;
-    padding-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: sandybrown;
+
   }

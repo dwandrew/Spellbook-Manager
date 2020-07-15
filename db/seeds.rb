@@ -17,6 +17,7 @@ class API
         JSON(body)
     end
 end
+
 def seed_list
 API.new
 spells= API.get_library("spells")
