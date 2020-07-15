@@ -106,8 +106,14 @@ div .collapse_content {
 
 
 .flash_error {
-  color: red;
+  color: green;
   font-size: 22px;
+  text-shadow: 0px 0px 2px black;
+  background-color: moccasin;
+  box-shadow: 0px 0px 20px black;
+  width: 20%;
+  padding: 20px;
+  margin: 60px auto;
 }
 
 
