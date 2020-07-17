@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20200709101905) do
   create_table "spellbook_spells", force: :cascade do |t|
     t.integer  "spell_id"
     t.integer  "spellbook_id"
+    t.integer  "newspell_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "newspell_id"
   end
 
   create_table "spellbooks", force: :cascade do |t|
