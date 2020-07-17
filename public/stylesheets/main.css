@@ -36,27 +36,6 @@ tr:nth-child(odd){
   }
   
 
-.navbar {
-width: 100%;
-background-color: #555;
-overflow: auto;
-text-shadow: 2px 2px 4px #000000;
-position: fixed;
-top: 0;
-}
-
-.navbar a {
-float: left;
-padding: 15px;
-color: white;
-text-decoration: none;
-font-size: 17px;
-}
-
-.navbar a:hover {
-background-color: #473;
-}
-
 input[type=submit] {
   box-shadow: 0px 0px 5px white;
   background-color: #4CAF50;
@@ -213,5 +192,65 @@ div .collapse_content {
     bottom: 0;
     width: 100%;
     background-color: sandybrown;
-
   }
+  
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: grey;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

@@ -9,7 +9,45 @@ class SpellbookController < ApplicationController
         end
      end
 
-    
+     get '/spells/level_order' do
+      if logged_in?
+      @spells ={}
+      @spells[:cantrip] =  Spell.all.select{|spell| spell[:level] == "0"}
+      @spells[:one] =  Spell.all.select{|spell| spell[:level] == "1"}
+      @spells[:two] =  Spell.all.select{|spell| spell[:level] == "2"}
+      @spells[:three] =  Spell.all.select{|spell| spell[:level] == "3"}
+      @spells[:four] =  Spell.all.select{|spell| spell[:level] == "4"}
+      @spells[:five] =  Spell.all.select{|spell| spell[:level] == "5"}
+      @spells[:six] =  Spell.all.select{|spell| spell[:level] == "6"}
+      @spells[:seven] =  Spell.all.select{|spell| spell[:level] == "7"}
+      @spells[:eight] =  Spell.all.select{|spell| spell[:level] == "8"}
+      @spells[:nine] =  Spell.all.select{|spell| spell[:level] == "9"}
+      erb:'/spellbook/level_order'
+      else 
+      login_error
+      end
+      end
+
+   get '/spells/school_order' do
+      if logged_in?
+      # @spells= Spell.all.sort_by{|spell| spell[:school]}
+      @spells ={}
+      @spells[:abjuration] = Spell.all.select{|spell| spell if spell[:school] == "Abjuration"}
+      @spells[:conjuration] = Spell.all.select{|spell| spell if spell[:school] == "Conjuration"}
+      @spells[:divination] = Spell.all.select{|spell| spell if spell[:school] == "Divination"}
+      @spells[:enchantment] = Spell.all.select{|spell| spell if spell[:school] == "Enchantment"}
+      @spells[:evocation]= Spell.all.select{|spell| spell if spell[:school] == "Evocation"}
+      @spells[:illusion] = Spell.all.select{|spell| spell if spell[:school] == "Illusion"}
+      @spells[:necromancy] = Spell.all.select{|spell| spell if spell[:school] == "Necromancy"}
+      @spells[:transmutation] = Spell.all.select{|spell| spell if spell[:school] == "Transmutation"}
+      erb:'/spellbook/schools'
+      else 
+      login_error
+      end
+    end
+   
+
+
     get '/spellbooks/new' do
       if logged_in?
         erb :'/spellbook/new_book'
