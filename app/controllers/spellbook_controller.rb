@@ -9,20 +9,35 @@ class SpellbookController < ApplicationController
         end
      end
 
-    # get '/spells/:id' do
-    #     if logged_in? 
-    #         if Spell.find_by_id(params[:id])
-    #         Spell.find_by_id(params[:id])
-    #         @spell = Spell.find_by_id(params[:id])
-    #         erb :'/spellbook/show_spell'
-    #         else flash[:error] = "Sorry No Spell of that ID exists"
-    #           redirect to '/'
-    #         end
-    #     else
-    #       login_error
-    #     end
-    # end
-    
+     get '/spells/level_order' do
+      if logged_in?
+      @spells= Spell.all.sort_by.sort_by{|spell| spell[:level]}
+      erb:'/spellbook/spells'
+      else 
+      login_error
+      end
+      end
+
+   get '/spells/school_order' do
+      if logged_in?
+      # @spells= Spell.all.sort_by{|spell| spell[:school]}
+      @spells ={}
+      @spells[:abjuration] = Spell.all.select{|spell| spell if spell[:school] == "Abjuration"}
+      @spells[:conjuration] = Spell.all.select{|spell| spell if spell[:school] == "Conjuration"}
+      @spells[:divination] = Spell.all.select{|spell| spell if spell[:school] == "Divination"}
+      @spells[:enchantment] = Spell.all.select{|spell| spell if spell[:school] == "Enchantment"}
+      @spells[:evocation]= Spell.all.select{|spell| spell if spell[:school] == "Evocation"}
+      @spells[:illusion] = Spell.all.select{|spell| spell if spell[:school] == "Illusion"}
+      @spells[:necromancy] = Spell.all.select{|spell| spell if spell[:school] == "Necromancy"}
+      @spells[:transmutation] = Spell.all.select{|spell| spell if spell[:school] == "Transmutation"}
+      erb:'/spellbook/schools'
+      else 
+      login_error
+      end
+    end
+   
+
+
     get '/spellbooks/new' do
       if logged_in?
         erb :'/spellbook/new_book'
