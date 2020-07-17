@@ -21,15 +21,26 @@
 <header class="menu">
         <% if logged_in? %>
         <div class='navbar'>
-          <ul>
-            <li> <a href = '/'> Home </a>  </li>
-            <li> <a href= '/newspell'> Create New Spell </a></li>
-            <li> <a href='/userspells'> View <%= current_user.username %>'s Created spells </a></li>
-            <li> <a href = '/spells'> Spells list </a> </li>
-            <li> <a href = '/spellbooks'> Spellbooks </a> </li>
-            <li> <a href = '/spellbooks/new'> New Spellbook </a> </li>
-            <li style="float:right"> <a href= '/logout'> Logout </a>  </li>
-          </ul>
+        
+             <a href = '/'> Home </a>  
+             <a href= '/newspell'> Create New Spell </a>
+             <a href='/userspells'> View <%= current_user.username %>'s Created spells </a>
+            
+             <div class="dropdown">
+                  <button class="dropbtn">Spells <i class="fa fa-caret-down"></i> </button>
+                  <div class="dropdown-content">
+                      <a href="/spells">Spells ordered Alphabetically</a>
+                      <a href="/spells/level_order">Spells ordered by Level</a>
+                      <a href="/spells/school_order">Spells ordered by School</a>
+          </div>
+        </div> 
+      
+          
+
+             <a href = '/spellbooks'> Spellbooks </a> 
+             <a href = '/spellbooks/new'> New Spellbook </a> 
+             <a style="float:right" href= '/logout'> Logout </a>  
+         
           </div>
 </header>
 
