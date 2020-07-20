@@ -1,4 +1,4 @@
-class Spells < ActiveRecord::Migration
+class Spells < ActiveRecord::Migration[4.2]
   def change
     create_table :spells do |t|
       t.string :name

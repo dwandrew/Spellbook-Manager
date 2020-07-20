@@ -1,4 +1,4 @@
-class CreateNewspells < ActiveRecord::Migration
+class CreateNewspells < ActiveRecord::Migration[4.2]
   def change
     create_table :newspells do |t|
       
