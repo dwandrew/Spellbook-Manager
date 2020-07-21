@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_101905) do
+ActiveRecord::Schema.define(version: 2020_07_21_100116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "monsters", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "monster_type"
+    t.string "monster_subtype", default: "none"
+    t.string "size"
+    t.string "alignment"
+    t.integer "armor_class"
+    t.integer "hit_points"
+    t.string "hit_dice"
+    t.string "challenge_rating"
+    t.string "speed"
+    t.string "other_speeds", default: "none"
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "constitution"
+    t.integer "intelligence"
+    t.integer "wisdom"
+    t.integer "charisma"
+    t.string "proficiencies"
+    t.string "damage_vulnerabilities", default: "none"
+    t.string "damage_resistences", default: "none"
+    t.string "damage_immunities", default: "none"
+    t.string "condition_immunities", default: "none"
+    t.string "senses"
+    t.string "languages", default: "none"
+    t.string "special_abilities", default: "none"
+    t.string "actions", default: "none"
+    t.string "reactions", default: "none"
+    t.string "legendary_actions", default: "none"
+    t.integer "monsterbook_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "newspells", id: :serial, force: :cascade do |t|
     t.string "name"

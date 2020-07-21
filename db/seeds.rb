@@ -18,12 +18,12 @@ class API
     end
 end
 
-def seed_list
+def seed_list_spells
 API.new
-spells= API.get_library("spells")
+    spells= API.get_library("spells")
     spells["results"].each do |spell|
          spell_info= API.get_url(spell['url'], "spells")
-         created = Spell.new(
+         created_spell = Spell.new(
             name: spell_info["name"],
             desc: spell_info["desc"].join(" <br>"),
             range: spell_info["range"],
@@ -37,12 +37,52 @@ spells= API.get_library("spells")
             school: spell_info["school"]["name"],
             classes: spell_info["classes"].map {|klass| klass["name"]}.join(", ")
          )
-         if spell_info["higher_level"]
-            created.higher_level = spell_info["higher_level"][0]
-            created.save
-        end
-        created.save
+            if spell_info["higher_level"]
+                created_spell.higher_level = spell_info["higher_level"][0]
+                created_spell.save
+            end
+        created_spell.save
         end
     end
 
-    seed_list
+    def seed_list_monsters
+    monsters = API.get_library("monsters")
+    monsters["results"].each do |monster|
+        monster_info = API.get_url(monster['url'], "monsters")
+        created_monster = Monster.new(
+        name: monster_info["name"],
+        monster_type: monster_info["type"],
+        monster_subtype: monster_info["subtype"],
+        size: monster_info["size"],
+        alignment: monster_info["alignment"],
+        armor_class: monster_info["armor_class"],
+        hit_points: monster_info["hit_points"],
+        hit_dice: monster_info["hit_dice"],
+        challenge_rating: monster_info["challenge_rating"],
+        speed: monster_info["speed"].map {|k,v| "#{k}: #{v}"}.join(", "),
+        other_speeds: monster_info["other_speeds"],
+        strength: monster_info["strength"],
+        dexterity: monster_info["dexterity"],
+        constitution: monster_info["constitution"],
+        intelligence: monster_info["intelligence"],
+        wisdom: monster_info["wisdom"],
+        charisma: monster_info["charisma"],
+        proficiencies: monster_info["proficiencies"] ? monster_info["proficiencies"].map {|prof| "#{prof["name"]}: +#{prof["value"]}"}.join(" <br>") : nil,
+        damage_vulnerabilities: monster_info["damage_vulnerabilities"],
+        damage_resistences: monster_info["damage_resistances"],
+        damage_immunities: monster_info["damage_immunities"],
+        condition_immunities: monster_info["condition_immunities"],
+        senses:  monster_info["senses"] ? monster_info["senses"].map {|k,v| "#{k}: #{v}"}.join(", ") : nil,
+        languages: monster_info["languages"],
+        special_abilities: monster_info["special_abilities"] ? monster_info["special_abilities"].map {|ability| "#{ability["name"]}: #{ability["desc"]}"}.join(" <br>") : nil,
+        actions: monster_info["actions"] ? monster_info["actions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(" <br>") : nil,
+        reactions: monster_info["reactions"] ? monster_info["reactions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(", ") : nil,
+        legendary_actions: monster_info["legendary_actions"] ? monster_info["legendary_actions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(" <br>") : nil)
+        created_monster.save
+        end
+
+    end
+
+    seed_list_monsters
+    seed_list_spells
+
