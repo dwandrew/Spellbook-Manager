@@ -18,13 +18,12 @@ width: 100%;
 table, td, th {
 border: 1px solid black;
 text-align: center;
-padding: 5px
+padding: 5px;
+margin: 5px
 }
 
 table, td .collapse_content {
-
-text-align: left;
-
+text-align: left
 }
 
 tr:nth-child(even){

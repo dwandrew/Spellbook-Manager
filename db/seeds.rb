@@ -67,17 +67,17 @@ API.new
         intelligence: monster_info["intelligence"],
         wisdom: monster_info["wisdom"],
         charisma: monster_info["charisma"],
-        proficiencies: monster_info["proficiencies"] ? monster_info["proficiencies"].map {|prof| "#{prof["name"]}: +#{prof["value"]}"}.join(" <br>") : nil,
-        damage_vulnerabilities: monster_info["damage_vulnerabilities"],
-        damage_resistences: monster_info["damage_resistances"],
-        damage_immunities: monster_info["damage_immunities"],
-        condition_immunities: monster_info["condition_immunities"],
+        proficiencies: monster_info["proficiencies"] ? monster_info["proficiencies"].map {|prof| "<em>#{prof["name"]}</em>: +#{prof["value"]}"}.join(" <br><br>") : nil,
+        damage_vulnerabilities: monster_info["damage_vulnerabilities"].join(", "),
+        damage_resistences: monster_info["damage_resistances"].join(", "),
+        damage_immunities: monster_info["damage_immunities"].join(", "),
+        condition_immunities: monster_info["condition_immunities"].map{|condition| "#{condition["name"]}"}.join(", "),
         senses:  monster_info["senses"] ? monster_info["senses"].map {|k,v| "#{k}: #{v}"}.join(", ") : nil,
         languages: monster_info["languages"],
-        special_abilities: monster_info["special_abilities"] ? monster_info["special_abilities"].map {|ability| "#{ability["name"]}: #{ability["desc"]}"}.join(" <br>") : nil,
-        actions: monster_info["actions"] ? monster_info["actions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(" <br>") : nil,
-        reactions: monster_info["reactions"] ? monster_info["reactions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(", ") : nil,
-        legendary_actions: monster_info["legendary_actions"] ? monster_info["legendary_actions"].map {|action| "#{action["name"]}: #{action["desc"]}"}.join(" <br>") : nil)
+        special_abilities: monster_info["special_abilities"] ? monster_info["special_abilities"].map {|ability| "<em>#{ability["name"]}</em>: #{ability["desc"]}"}.join(" <br><br>") : nil,
+        actions: monster_info["actions"] ? monster_info["actions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(" <br><br>") : nil,
+        reactions: monster_info["reactions"] ? monster_info["reactions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(", ") : nil,
+        legendary_actions: monster_info["legendary_actions"] ? monster_info["legendary_actions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(" <br><br>") : nil)
         created_monster.save
         end
 

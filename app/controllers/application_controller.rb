@@ -12,9 +12,9 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      redirect to '/user_profile'
+      redirect to '/logout'
     else
-    erb :welcome
+      erb :welcome
     end
   end
 

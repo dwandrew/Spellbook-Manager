@@ -1,0 +1,192 @@
+<% @monsters.each do |k, v| %>
+<h2><strong>Challenge Rating: </strong><% if k.to_s == "0.125" %>
+            <%="1/8" %>
+        <% elsif k.to_s == "0.25" %>
+            <%="1/4"%>
+        <% elsif k.to_s =="0.5" %>
+            <%="1/2"%>
+        <% else %>
+            <%=k.to_s%>
+        <%end %></h2>
+<table class="spell_table">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Challenge rating</th>
+        <th>Full Details</th>
+    </tr>
+<tr>
+<% v.each do |monster| %> 
+ <td><%= monster.name %></td>
+ <td><%= monster.monster_type.capitalize %></td>
+ <td> <% if monster.challenge_rating == "0.125" %>
+            <%="1/8" %>
+        <% elsif monster.challenge_rating == "0.25" %>
+            <%="1/4"%>
+        <% elsif monster.challenge_rating =="0.5" %>
+            <%="1/2"%>
+        <% else %>
+            <%=monster.challenge_rating%>
+        <%end %>
+</td>
+
+<td>
+<button type="button" class="collapsible"> Monster Details </button>
+<div class="collapse_content">
+<p>
+                <strong>Monster Name:</strong> <%= monster.name %> <br>
+                <strong>Challenge Rating:</strong> <% if monster.challenge_rating == "0.125" %>
+            <%="1/8" %>
+        <% elsif monster.challenge_rating == "0.25" %>
+            <%="1/4"%>
+        <% elsif monster.challenge_rating =="0.5" %>
+            <%="1/2"%>
+        <% else %>
+            <%=monster.challenge_rating%>
+        <%end %><br>
+                <strong>Type:</strong> <%= monster.monster_type.capitalize  %> <br>
+                
+                <% if monster.monster_subtype %>
+                <strong>Subtype:</strong> <%= monster.monster_subtype.capitalize  %> <br>
+                <% end %>
+
+                <strong>Size:</strong> <%= monster.size %> <br>
+                <strong>Alignment:</strong> <%= monster.alignment %> <br>
+                <strong>Armour Class: </strong><%= monster.armor_class %> <br>
+                <strong>Hit Points:</strong> <%=monster.hit_points %> <br>
+                <strong>Hit Dice: </strong><%= monster.hit_dice %> <br>
+                <strong>Speed:</strong> <%= monster.speed %> <br>
+                
+                <% if monster.other_speeds %>
+                <strong>Other Speeds: </strong><%= monster.other_speeds %> <br>
+                <br>
+                <% end %>
+                
+                <strong>Senses:</strong> <%= monster.senses %> <br>
+                
+                <% if monster.languages != "" %>
+                <strong>Languages:</strong> <%= monster.languages %> <br>
+                <br>
+                <% end %>
+
+                <h4>Ability Scores</h4>
+                <strong>Strength:</strong> <%= monster.strength %> <% score = monster.strength %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                <strong>Dexterity:</strong> <%= monster.dexterity %> <% score = monster.dexterity %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                <strong>Constitution:</strong> <%= monster.constitution %> <% score = monster.constitution %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                <strong>Intelligence:</strong> <%= monster.intelligence %> <% score = monster.intelligence %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                <strong>Wisdom:</strong> <%= monster.wisdom %> <% score = monster.wisdom %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                <strong>Charisma:</strong> <%= monster.charisma %> <% score = monster.charisma %>
+                <% score-=10 %>
+                <% score/=2%>
+                <% if score >=0%>
+                    <%= "(+#{score})"%>
+                <% else %>
+                    <%="(#{score})"%>
+                <% end %> <br>
+                
+                <% if monster.proficiencies != "" %>
+                <h4>Proficiencies</h4>
+                <%= monster.proficiencies %> <br>
+                <br>
+                <% end %>
+
+            <% if monster.damage_vulnerabilities != "" || monster.damage_resistences != "" || monster.damage_immunities != "" || monster.condition_immunities != "" %>
+                <h4>Damage and condition modifiers</h4>
+                    <% if monster.damage_vulnerabilities != "" %>
+                    <strong>Damage Vulnerabilities:</strong> <%= monster.damage_vulnerabilities %> <br>
+                    <% end %>
+                    <% if monster.damage_resistences != "" %>
+                <strong>Damage Resistances:</strong> <%= monster.damage_resistences %> <br>
+                    <% end %>
+                    <% if monster.damage_immunities != "" %>
+                <strong>Damage Immunities:</strong> <%= monster.damage_immunities %> <br>
+                 <% end %>
+                    <% if monster.condition_immunities != "" %>
+                <strong>Condition Immunities:</strong> <%= monster.condition_immunities %> <br>
+                    <% end %>
+                <br>
+                <% end %>
+                <% if monster.special_abilities %>
+                <h4>Special Abilities:</h4>
+                <%=monster.special_abilities.gsub("\n", "<br>")%><br>
+                <br>
+                <% end %>
+                <% if monster.actions %>
+                <h4>Actions:</h4>
+                <%=monster.actions.gsub("\n", "<br>")%><br>
+                <br>
+                <% end %>
+                <% if monster.reactions %>
+                <h4>Reactions</h4>
+                <%=monster.reactions.gsub("\n", "<br>")%>
+                <br>
+                <% end %>
+                <% if monster.legendary_actions %>
+                <h4>Legendary Actions:</h4>
+                <%=monster.legendary_actions.gsub("\n", "<br>")%>
+                <% end %>
+            </p>
+</div> <br> </td>
+</tr>
+
+<% end %>
+
+</table>
+<br>
+<% end %>
+
+
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
