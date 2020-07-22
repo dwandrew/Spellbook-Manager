@@ -64,8 +64,8 @@ class MonsterController < ApplicationController
       end
   
       post '/monsterbooks/finish' do
+        binding.pry
         if logged_in?
-            # binding.pry
               if current_user.monsterbooks.find_by book_name: params[:new_book][:book_name]
                   flash[:error]= "Already Book of that Title, please choose another Book Name"
                   redirect to '/monsterbooks/new'
@@ -119,7 +119,6 @@ class MonsterController < ApplicationController
         end
       
         patch "/monsterbooks/:id" do
-            binding.pry
           book = Monsterbook.find_by_id(params[:id])
             if current_user.id == book.user_id
               book.update(book_name: params[:update_book][:book_name])

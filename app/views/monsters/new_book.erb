@@ -221,7 +221,7 @@
 
 
     <td> 
-    <input type='checkbox' name=new_book[monsters][<%="#{monster.name}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> >
+    <input type='checkbox' name=new_book[monsters][<%="#{monster.name.gsub(" ", "_")}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> >
     </td>
 
 </tr>
