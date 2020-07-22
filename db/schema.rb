@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_100116) do
+ActiveRecord::Schema.define(version: 2020_07_22_084620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2020_07_21_100116) do
     t.string "reactions", default: "none"
     t.string "legendary_actions", default: "none"
     t.integer "monsterbook_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "monstersspells", id: :serial, force: :cascade do |t|
+    t.integer "monster_id"
+    t.integer "spell_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

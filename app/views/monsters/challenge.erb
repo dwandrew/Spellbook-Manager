@@ -143,36 +143,53 @@
                 <% end %>
                 <% if monster.special_abilities %>
                 <h4>Special Abilities:</h4>
-                
-                <% ability_array = monster.special_abilities.split("<br>").join(" ").split(/[,:-]/).map{|element| element.strip} %>
-                <% spell_array =[] %>
-                <% ability_array.each { |element| spell_array << Spell.all.select{|spell| spell if spell.name.upcase == element.upcase} } %>
-                <% spell_array.reject!{|e| e.empty?} %>
                 <%=monster.special_abilities.gsub("\n", "<br>")%><br>
-                <% if spell_array != [] %>
-                <% #binding.pry %>
-                 <% spell_array.each do |spell| %>
-                 <button type="button" class="collapsible"><%= spell[0].name %></button>
-                 <div class="collapse_content">
+                
+                <% if !monster.spells.empty? %>
+            
+                 <button type="button" class="collapsible"> <%= monster.name %>'s Spells </button>
+                <div class="collapse_content">
+                    <table>
+                <tr>
+                <th>Spell Name</th>
+                <th>Spell Level</th>
+                <th>Spell Details</th>
+                </tr>
+
+                <% monster.spells.sort_by{|spell| spell.level}.each do |spell| %>
+                <tr>
+                <td> <%= spell.name%> </td>
+                <td> <%= spell.level == "0" ? "Cantrip" : spell.level %> </td>
+                <td>
+                <button type="button" class="collapsible"> <%= monster.name %>'s Spells </button>
+                <div class="collapse_content">
                 <p>
-                <strong>Spell name:</strong> <%= spell[0].name %> <br>
-                <strong>Spell level:</strong> <%= spell[0].level == "0" ? "Cantrip" : spell[0].level %> <br>
-                <strong>Spell school:</strong> <%= spell[0].school %> <br>
-                <strong>Spell classes:</strong> <%= spell[0].classes %> <br>
-                <strong>Spell range:</strong> <%= spell[0].range %> <br>
-               <strong> Spell components:</strong> <%= spell[0].components %> <br>
-                <strong>Spell materials: </strong><%= spell[0].material ? spell[0].material : "None Needed" %> <br>
-                <strong>Can be cast as a ritual:</strong> <%= spell[0].ritual ? "Yes" : "No" %> <br>
-                <strong>Spell concentration required: </strong><%= spell[0].concentration ? "Required" : "Not Required" %> <br>
-                <strong>Spell duration:</strong> <%= spell[0].duration %> <br>
-                <strong>Spell casting time: </strong><%= spell[0].casting_time %> <br>
+                <strong>Spell name:</strong> <%= spell.name %> <br>
+                <strong>Spell level:</strong> <%= spell.level == "0" ? "Cantrip" : spell.level %> <br>
+                <strong>Spell school:</strong> <%= spell.school %> <br>
+                <strong>Spell classes:</strong> <%= spell.classes %> <br>
+                <strong>Spell range:</strong> <%= spell.range %> <br>
+                <strong> Spell components:</strong> <%= spell.components %> <br>
+                <strong>Spell materials: </strong><%= spell.material ? spell.material : "None Needed" %> <br>
+                <strong>Can be cast as a ritual:</strong> <%= spell.ritual ? "Yes" : "No" %> <br>
+                <strong>Spell concentration required: </strong><%= spell.concentration ? "Required" : "Not Required" %> <br>
+                <strong>Spell duration:</strong> <%= spell.duration %> <br>
+                <strong>Spell casting time: </strong><%= spell.casting_time %> <br>
                 <br>
-                <strong>Spell desciption:</strong> <%= spell[0].desc %> <br>
+                <strong>Spell desciption:</strong> <%= spell.desc %> <br>
                 <br>
-                <strong>Spell at higher levels: </strong><%= spell[0].higher_level ? spell[0].higher_level : 'No Bonus for casting at higher level' %> <br>
+                <strong>Spell at higher levels: </strong><%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
             </p>
-                </div>
+            </div>
+            </td>
+            
+            </tr>
+
+
                 <% end %>
+            </table>
+
+            </div>
                 <% end %>
                 <br>
                 <% end %>
@@ -197,6 +214,7 @@
 <% end %>
 
 </table>
+
 <br>
 <% end %>
 
