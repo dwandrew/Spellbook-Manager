@@ -136,6 +136,54 @@
                 <% if monster.special_abilities %>
                 <h4>Special Abilities:</h4>
                 <%=monster.special_abilities.gsub("\n", "<br>")%><br>
+                
+                <% if !monster.spells.empty? %>
+                <br>
+                 <button type="button" class="collapsible"> <%= monster.name %>'s Spells </button>
+                <div class="collapse_content">
+                    <table class= "mini_table">
+                <tr>
+                <th>Spell Name</th>
+                <th>Spell Level</th>
+                <th>Spell Details</th>
+                </tr>
+
+                <% monster.spells.sort_by{|spell| spell.level}.each do |spell| %>
+                <tr>
+                <td> <%= spell.name%> </td>
+                <td> <%= spell.level == "0" ? "Cantrip" : spell.level %> </td>
+                <td>
+                <button type="button" class="collapsible"> <%= monster.name %>'s Spells </button>
+                <div class="collapse_content">
+                <p>
+                <strong>Spell name:</strong> <%= spell.name %> <br>
+                <strong>Spell level:</strong> <%= spell.level == "0" ? "Cantrip" : spell.level %> <br>
+                <strong>Spell school:</strong> <%= spell.school %> <br>
+                <strong>Spell classes:</strong> <%= spell.classes %> <br>
+                <strong>Spell range:</strong> <%= spell.range %> <br>
+                <strong> Spell components:</strong> <%= spell.components %> <br>
+                <strong>Spell materials: </strong><%= spell.material ? spell.material : "None Needed" %> <br>
+                <strong>Can be cast as a ritual:</strong> <%= spell.ritual ? "Yes" : "No" %> <br>
+                <strong>Spell concentration required: </strong><%= spell.concentration ? "Required" : "Not Required" %> <br>
+                <strong>Spell duration:</strong> <%= spell.duration %> <br>
+                <strong>Spell casting time: </strong><%= spell.casting_time %> <br>
+                <br>
+                <strong>Spell desciption:</strong> <%= spell.desc %> <br>
+                <br>
+                <strong>Spell at higher levels: </strong><%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
+            </p>
+            </div>
+            </td>
+            
+            </tr>
+
+
+                <% end %>
+            </table>
+
+            </div>
+            <br>
+                <% end %>
                 <br>
                 <% end %>
                 <% if monster.actions %>
@@ -159,8 +207,8 @@
 <% end %>
 
 </table>
-<br>
 
+<br>
 <% end %>
 
 

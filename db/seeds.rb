@@ -78,9 +78,12 @@ API.new
         actions: monster_info["actions"] ? monster_info["actions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(" <br><br>") : nil,
         reactions: monster_info["reactions"] ? monster_info["reactions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(", ") : nil,
         legendary_actions: monster_info["legendary_actions"] ? monster_info["legendary_actions"].map {|action| "<em>#{action["name"]}</em>: #{action["desc"]}"}.join(" <br><br>") : nil)
-        if created_monster.special_abilities
-        ability_array = created_monster.special_abilities.split("<br>").join(" ").split(/[,:-]/).map{|element| element.strip}  
-        ability_array.each { |element| created_monster.spells << Spell.all.select{|spell| spell if spell.name.upcase == element.upcase} }
+        
+        if monster_info["special_abilities"]
+            if !monster_info["special_abilities"].select{|ability| ability["spellcasting"]}.empty?
+            spells = monster_info["special_abilities"].select{|ability| ability["spellcasting"]}
+            spells[0]["spellcasting"]["spells"].each {|spell| created_monster.spells << Spell.find_by_name("#{spell["name"]}")}
+            end
         end
         created_monster.save
         end

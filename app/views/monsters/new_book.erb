@@ -1,24 +1,23 @@
-<% @monsters.each do |k, v| %>
-<h2><strong>Challenge Rating: </strong><% if k.to_s == "0.125" %>
-            <%="1/8" %>
-        <% elsif k.to_s == "0.25" %>
-            <%="1/4"%>
-        <% elsif k.to_s =="0.5" %>
-            <%="1/2"%>
-        <% else %>
-            <%=k.to_s%>
-        <%end %></h2>
+<div class = "input_new">
+<form method= 'POST' action ='/monsterbook/finish'>
+<h2><label for='monsterbook_name'>Monsterbook Name: </label><br>
+<input type="text" name ='new_book[book_name]' id='monsterbook_name' placeholder = 'Monsterbook Name' required></h2>
+
+<h3>Official Monsters</h3>
+
 <table class="spell_table">
     <tr>
         <th>Name</th>
+        <th>Challenge Rating</th>
         <th>Type</th>
-        <th>Challenge rating</th>
-        <th>Full Details</th>
+        <th>Monster Details</th>
+        <th>Add to Monsterbook</th>
     </tr>
+
+ <% @monsters.each do |monster| %>
 <tr>
-<% v.each do |monster| %> 
  <td><%= monster.name %></td>
- <td><%= monster.monster_type.capitalize %></td>
+  <td><%= monster.monster_type.capitalize %></td>
  <td> <% if monster.challenge_rating == "0.125" %>
             <%="1/8" %>
         <% elsif monster.challenge_rating == "0.25" %>
@@ -189,41 +188,32 @@
                 <% end %>
             </table>
 
-            </div>
-            <br>
+            </div> 
                 <% end %>
-                <br>
                 <% end %>
-                <% if monster.actions %>
-                <h4>Actions:</h4>
-                <%=monster.actions.gsub("\n", "<br>")%><br>
-                <br>
-                <% end %>
-                <% if monster.reactions %>
-                <h4>Reactions</h4>
-                <%=monster.reactions.gsub("\n", "<br>")%>
-                <br>
-                <% end %>
-                <% if monster.legendary_actions %>
-                <h4>Legendary Actions:</h4>
-                <%=monster.legendary_actions.gsub("\n", "<br>")%>
-                <% end %>
-            </p>
-</div> <br> </td>
+            
+            
+</td>
+
+
+
+    <td> 
+    <input type='checkbox' name=new_book[monsters][<%="#{monster.name}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> >
+    </td>
+
 </tr>
 
 <% end %>
-
 </table>
+    <input type="submit" value ="Select Monsters" class = "entry_button">
+</form>
 
-<br>
-<% end %>
-
-
-
+</div>
 
 
-<script>
+
+
+    <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

@@ -31,7 +31,10 @@ background-color: #f2f2f2
 }
 
 tr:nth-child(odd){
-  background-color: wheat;
+  background-color: rgb(245, 207, 136);
+  }
+table .mini_table tr:nth-child(odd){
+  background-color: rgb(245, 189, 136);
   }
   
 
