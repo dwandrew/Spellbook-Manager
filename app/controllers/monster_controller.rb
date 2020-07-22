@@ -64,7 +64,6 @@ class MonsterController < ApplicationController
       end
   
       post '/monsterbooks/finish' do
-        binding.pry
         if logged_in?
               if current_user.monsterbooks.find_by book_name: params[:new_book][:book_name]
                   flash[:error]= "Already Book of that Title, please choose another Book Name"
