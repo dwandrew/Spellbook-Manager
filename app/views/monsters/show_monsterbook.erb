@@ -1,9 +1,5 @@
-<div class = "input_new">
-<form method= 'POST' action ='/monsterbooks/finish'>
-<h2><label for='monsterbook_name'>Monsterbook Name: </label><br>
-<input type="text" name ='new_book[book_name]' id='monsterbook_name' placeholder = 'Monsterbook Name' required></h2>
+<h1> Welcome to <%= @monsterbook.book_name  %>!</h1><br>
 
-<h3>Official Monsters</h3>
 
 <table class="spell_table">
     <tr>
@@ -11,10 +7,9 @@
         <th>Challenge Rating</th>
         <th>Type</th>
         <th>Monster Details</th>
-        <th>Add to Monsterbook</th>
     </tr>
 
- <% @monsters.each do |monster| %>
+ <% @monsterbook.monsters.each do |monster| %>
 <tr>
  <td><%= monster.name %></td>
   <td><%= monster.monster_type.capitalize %></td>
@@ -195,20 +190,11 @@
             
 </td>
 
-
-
-    <td> 
-    <input type='checkbox' name=new_book[monsters][<%="#{monster.name}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> >
-    </td>
-
 </tr>
 
 <% end %>
 </table>
-    <input type="submit" value ="Select Monsters" class = "entry_button">
-</form>
 
-</div>
 
 
 

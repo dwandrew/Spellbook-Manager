@@ -12,14 +12,14 @@
 <tr>
 <td><%= book.book_name %> <br> </td>
 <td><%= book.monsters.length %><br></td>
-<td><form method='get' action = '/monsterbook/<%= book.id %>'>
+<td><form method='get' action = '/monsterbooks/<%= book.id %>'>
 <input type="submit" value="View Monsters ">
 </form></td>
 
-<td><form method='get' action = '/monsterbook/<%= book.id %>/edit'>
+<td><form method='get' action = '/monsterbooks/<%= book.id %>/edit'>
 <input type="submit" value="Edit Monsterbook"></form></td>
 
-<td> <form method='post' action = '/monsterbook/delete/<%= book.id %>'>
+<td> <form method='post' action = '/monsterbooks/delete/<%= book.id %>'>
 <input type="hidden" name="_method" value="delete" >
 <input type="submit" value="Delete Monster Book" onclick="return confirm('Are you sure you want to delete this item?');">
 

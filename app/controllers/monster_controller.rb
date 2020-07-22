@@ -65,9 +65,10 @@ class MonsterController < ApplicationController
   
       post '/monsterbooks/finish' do
         if logged_in?
+            # binding.pry
               if current_user.monsterbooks.find_by book_name: params[:new_book][:book_name]
                   flash[:error]= "Already Book of that Title, please choose another Book Name"
-                  redirect to '/monsterbook/new'
+                  redirect to '/monsterbooks/new'
                   else
                   new_book = Monsterbook.create(book_name: params[:new_book][:book_name], user: current_user)
                         if params[:new_book][:monsters]
@@ -79,7 +80,7 @@ class MonsterController < ApplicationController
              
      
           new_book.save
-          redirect to "/monsterbook/#{new_book.id}"
+          redirect to "/monsterbooks/#{new_book.id}"
         else
           login_error
         end
@@ -89,7 +90,7 @@ class MonsterController < ApplicationController
       get '/monsterbooks/:id' do
         if logged_in?
           if Monsterbook.find_by_id(params[:id])
-          @monsters = Monsterbook.find_by_id(params[:id])
+          @monsterbook = Monsterbook.find_by_id(params[:id])
           erb :'/monsters/show_monsterbook'
           else flash[:error] = "Sorry no Monsterbook of that ID exists"
             redirect to '/monsterbooks'
@@ -99,65 +100,54 @@ class MonsterController < ApplicationController
         end
       end
       
-        # get "/monsters/:id/edit" do
-        #   if logged_in?
-        #     if Monsterbook.find_by_id(params[:id])
-        #     @book = Spellbook.find_by_id(params[:id])
-        #     user = current_user
-        #     if user.id == @book.user_id
-        #       type = @book.book_class
-        #       @spell_list = Spell.all.select{|spell| spell if spell.classes.include? type}.sort_by{|spell| spell[:level]}
-        #       @user_spells = current_user.newspells.select{|spell| spell if spell.classes.include? type}.sort_by{|spell| spell[:level]}
-        #       erb :'/spellbook/edit'
-        #     else 
-        #           flash[:error] = "Sorry you do not have permission to do that"
-        #           redirect to '/spellbooks'
-        #     end
-        #   else flash[:error] = "Sorry no Spellbook of that ID exists"
-        #     redirect to '/spellbooks'
-        #   end
-        #   else redirect to '/spellbooks'
-        #   end
-        # end
+        get "/monsterbooks/:id/edit" do
+          if logged_in?
+            if Monsterbook.find_by_id(params[:id])
+            @book = Monsterbook.find_by_id(params[:id])
+            user = current_user
+                if user.id == @book.user_id
+                erb :'/monsters/edit'
+                else 
+                    flash[:error] = "Sorry you do not have permission to do that"
+                    redirect to '/monsterbooks'
+                end
+            else flash[:error] = "Sorry no Monsterbook of that ID exists"
+                redirect to '/monsterbooks'
+            end
+          else redirect to '/monsterbooks'
+          end
+        end
       
-        # patch "/spellbooks/:id" do
-        #   book = Spellbook.find_by_id(params[:id])
-        #     user = current_user
-        #     if user.id == book.user_id
-        #       book.update(book_name: params[:update_book][:book_name])
-        #       book.spells.delete_all
-        #       book.newspells.delete_all
-        #       if params[:update_book][:spells]
-        #       params[:update_book][:spells].values.each do |value|
-        #         Spell.all.select {|spell| book.spells << spell if spell.id == value.to_i }
-        #         end
-        #       end
-        #       if params[:new_book]
-        #           params[:new_book][:user_spells].values.each do |value|
-        #             current_user.newspells.select {|spell| book.newspells << spell if spell.id == value.to_i }
-        #       end
-        #     end
+        patch "/monsterbooks/:id" do
+            binding.pry
+          book = Monsterbook.find_by_id(params[:id])
+            if current_user.id == book.user_id
+              book.update(book_name: params[:update_book][:book_name])
+              book.monsters.delete_all
+              if params[:update_book][:monsters]
+              params[:update_book][:monsters].values.each { |value| Monster.all.select {|mon| book.monsters << mon if mon.id == value.to_i } }
+              end
               
-        #       book.save
-        #       redirect to "/spellbooks/#{ book.id }"
-        #   else 
-        #       redirect to "/spellbooks/#{book.id}/edit"
-        #   end
-        # end
+              book.save
+              redirect to "/monsterbooks/#{ book.id }"
+          else 
+              redirect to "/monsterbooks/#{book.id}/edit"
+          end
+        end
       
-        # delete "/spellbooks/delete/:id" do
-        #   if logged_in?
-        #     book = Spellbook.find_by_id(params[:id])
-        #     user = current_user
-        #     if user.id == book.user_id
-        #     book.delete
-        #     redirect to '/spellbooks'
-        #     else 
-        #       flash[:error] = "Sorry you do not have permission to do that"
-        #       redirect to '/books'
-        #     end
-        #     else login_error
-        #   end
-        # end
+        delete "/monsterbooks/delete/:id" do
+          if logged_in?
+            book = Monsterbook.find_by_id(params[:id])
+            user = current_user
+            if user.id == book.user_id
+            book.delete
+            redirect to '/monsterbooks'
+            else 
+              flash[:error] = "Sorry you do not have permission to do that"
+              redirect to '/monsterbooks'
+            end
+            else login_error
+          end
+        end
 
 end

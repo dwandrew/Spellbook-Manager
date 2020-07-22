@@ -1,7 +1,10 @@
 <div class = "input_new">
-<form method= 'POST' action ='/monsterbooks/finish'>
-<h2><label for='monsterbook_name'>Monsterbook Name: </label><br>
-<input type="text" name ='new_book[book_name]' id='monsterbook_name' placeholder = 'Monsterbook Name' required></h2>
+<form method= 'POST' action ='/monsterbooks/<%= @book.id %>'>
+<input type="hidden" name="_method" value="patch">
+
+<label for='monsterbook_name'> Monsterbook Name: </label><br>
+<input type="text" name ='update_book[book_name]' id='monsterbook_name' value = "<%= @book.book_name %>" required><br>
+<h2>-----------------------</h2>
 
 <h3>Official Monsters</h3>
 
@@ -14,7 +17,7 @@
         <th>Add to Monsterbook</th>
     </tr>
 
- <% @monsters.each do |monster| %>
+ <% Monster.all.each do |monster| %>
 <tr>
  <td><%= monster.name %></td>
   <td><%= monster.monster_type.capitalize %></td>
@@ -198,20 +201,18 @@
 
 
     <td> 
-    <input type='checkbox' name=new_book[monsters][<%="#{monster.name}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> >
+    <input type='checkbox' name=update_book[monsters][<%="#{monster.name}"%>] id=<%="#{monster.name}"%> value = <%="#{monster.id}"%> <%= 'checked' if @book.monsters.include? monster %> >
     </td>
 
 </tr>
 
 <% end %>
 </table>
-    <input type="submit" value ="Select Monsters" class = "entry_button">
+
+<input type="submit" value ="Edit Monsterbook" class = "entry_button">
 </form>
 
 </div>
-
-
-
 
     <script>
 var coll = document.getElementsByClassName("collapsible");
