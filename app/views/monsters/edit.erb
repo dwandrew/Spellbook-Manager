@@ -148,7 +148,6 @@
                 <%=monster.special_abilities.gsub("\n", "<br>")%><br>
                 
                 <% if !monster.spells.empty? %>
-                <br>
                  <button type="button" class="collapsible"> <%= monster.name %>'s Spells </button>
                 <div class="collapse_content">
                     <table class= "mini_table">
@@ -182,6 +181,7 @@
                 <br>
                 <strong>Spell at higher levels: </strong><%= spell.higher_level ? spell.higher_level : 'No Bonus for casting at higher level' %> <br>
             </p>
+            
             </div>
             </td>
             
@@ -190,14 +190,34 @@
 
                 <% end %>
             </table>
-
             </div> 
+            <% end %>
                 <% end %>
+
+
+                <% if monster.actions %>
+                <h4>Actions:</h4>
+                <%=monster.actions.gsub("\n", "<br>")%><br>
+                <br>
                 <% end %>
+
+                <% if monster.reactions %>
+                <h4>Reactions</h4>
+                <%=monster.reactions.gsub("\n", "<br>")%>
+                <br>
+                <% end %>
+
+                <% if monster.legendary_actions %>
+                <h4>Legendary Actions:</h4>
+                <%=monster.legendary_actions.gsub("\n", "<br>")%>
+                <% end %>
+
+            </p>
+            
+                
             
             
 </td>
-
 
 
     <td> 

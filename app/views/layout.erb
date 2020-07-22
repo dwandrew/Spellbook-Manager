@@ -22,9 +22,8 @@
         <% if logged_in? %>
         <div class='navbar'>
         
-             <a href = '/'> Home </a>  
-             <a href= '/newspell'> Create New Spell </a>
-             <a href='/userspells'> View <%= current_user.username %>'s Created spells </a>
+             <a href = '/user_profile'> Home </a>  
+             
             
              <div class="dropdown">
                   <button class="dropbtn">Spells <i class="fa fa-caret-down"></i> </button>
@@ -33,7 +32,23 @@
                       <a href="/spells/level_order">Spells ordered by Level</a>
                       <a href="/spells/school_order">Spells ordered by School</a>
           </div>
+        </div>      
+        <div class="dropdown">
+                  <button class="dropbtn">Spellbooks<i class="fa fa-caret-down"></i> </button>
+                  <div class="dropdown-content">
+                     <a href = '/spellbooks'>Your Spellbooks</a> 
+                    <a href = '/spellbooks/new'>New Spellbook</a> 
+ 
+          </div>
         </div> 
+        <div class="dropdown">
+                  <button class="dropbtn">Custom Spells<i class="fa fa-caret-down"></i> </button>
+                  <div class="dropdown-content">
+                      <a href= '/newspell'> Create New Spell </a>
+                      <a href='/userspells'> View <%= current_user.username.capitalize %>'s Created spells </a>
+          </div>
+        </div> 
+
         <div class="dropdown">
                   <button class="dropbtn">Monsters<i class="fa fa-caret-down"></i> </button>
                   <div class="dropdown-content">
@@ -42,8 +57,14 @@
                       <a href="/monsters/type">Monsters ordered by Type</a>
           </div>
         </div> 
-             <a href = '/spellbooks'> Spellbooks </a> 
-             <a href = '/spellbooks/new'> New Spellbook </a> 
+        <div class="dropdown">
+                  <button class="dropbtn">Monster Books<i class="fa fa-caret-down"></i> </button>
+                  <div class="dropdown-content">
+                      <a href="/monsterbooks"> Your Monsterbooks </a>
+                      <a href="/monsterbooks/new"> New Monsterbook </a>
+                      
+          </div>
+        </div> 
              <a style="float:right" href= '/logout'> Logout </a>  
          
           </div>
