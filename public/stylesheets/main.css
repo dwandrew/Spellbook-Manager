@@ -256,3 +256,43 @@ div .collapse_content {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+#myBtntop {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  left: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtntop:hover {
+  background-color: red;
+}
+
+#myBtnBottom {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  left: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtnBottom:hover {
+  background-color: red;
+}
