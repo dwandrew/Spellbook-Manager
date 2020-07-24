@@ -1,5 +1,5 @@
 Welcome to the Dungeons and Dragons 5th Edition Spellbook manager,
-From here you can create accounts, then create spellbooks, add spells, create your own spells
+From here you can create accounts, then create spellbooks, add spells, create your own spells as well as view and create Monsterbooks, for handy access during encounters!
 as well as modifying any createable contents.
 
 To commennce you must first Bundle Install, then use rake migrations to install all of the local files.
