@@ -1,10 +1,10 @@
 development:
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   database: spellbook_development
   pool: 2
 production:
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   pool: 5
   host: <%= ENV['DATABASE_HOST'] %>
