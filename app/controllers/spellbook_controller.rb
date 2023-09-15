@@ -1,16 +1,11 @@
 class SpellbookController < ApplicationController
 
     get '/spells' do
-        if logged_in?
         @spells= Spell.all
         erb:'/spellbook/spells'
-        else 
-        login_error
-        end
      end
 
      get '/spells/level_order' do
-      if logged_in?
       @spells ={}
       @spells[:cantrip] =  Spell.all.select{|spell| spell[:level] == "0"}
       @spells[:one] =  Spell.all.select{|spell| spell[:level] == "1"}
@@ -23,14 +18,9 @@ class SpellbookController < ApplicationController
       @spells[:eight] =  Spell.all.select{|spell| spell[:level] == "8"}
       @spells[:nine] =  Spell.all.select{|spell| spell[:level] == "9"}
       erb:'/spellbook/level_order'
-      else 
-      login_error
-      end
       end
 
    get '/spells/school_order' do
-      if logged_in?
-      # @spells= Spell.all.sort_by{|spell| spell[:school]}
       @spells ={}
       @spells[:abjuration] = Spell.all.select{|spell| spell if spell[:school] == "Abjuration"}
       @spells[:conjuration] = Spell.all.select{|spell| spell if spell[:school] == "Conjuration"}
@@ -41,9 +31,6 @@ class SpellbookController < ApplicationController
       @spells[:necromancy] = Spell.all.select{|spell| spell if spell[:school] == "Necromancy"}
       @spells[:transmutation] = Spell.all.select{|spell| spell if spell[:school] == "Transmutation"}
       erb:'/spellbook/schools'
-      else 
-      login_error
-      end
     end
    
 

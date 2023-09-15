@@ -19,7 +19,7 @@
   </style>
 
 <header class="menu">
-        <% if logged_in? %>
+  <% if logged_in? %>
         <div class='navbar'>
         
              <a href = '/user_profile'> Home </a>  
@@ -31,8 +31,8 @@
                       <a href="/spells">Spells ordered Alphabetically</a>
                       <a href="/spells/level_order">Spells ordered by Level</a>
                       <a href="/spells/school_order">Spells ordered by School</a>
-          </div>
-        </div>      
+                  </div>
+              </div>      
         <div class="dropdown">
                   <button class="dropbtn">Spellbooks<i class="fa fa-caret-down"></i> </button>
                   <div class="dropdown-content">
@@ -68,18 +68,41 @@
              <a style="float:right" href= '/logout'> Logout </a>  
          
           </div>
+
+          <% else %>
+          <div class='navbar'>
+              <a href = '/'> Login </a>  
+            <div class="dropdown">
+              <button class="dropbtn">Spells <i class="fa fa-caret-down"></i> </button>
+              <div class="dropdown-content">
+                <a href="/spells">Spells ordered Alphabetically</a>
+                <a href="/spells/level_order">Spells ordered by Level</a>
+                <a href="/spells/school_order">Spells ordered by School</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button class="dropbtn">Monsters<i class="fa fa-caret-down"></i> </button>
+                <div class="dropdown-content">
+                  <a href="/monsters">Monsters ordered Alphabetically</a>
+                  <a href="/monsters/challenge">Monsters ordered by CR</a>
+                  <a href="/monsters/type">Monsters ordered by Type</a>
+                </div>
+              </div>
+          </div>  
 </header>
 
   <body>
-  <% if flash[:error] %>
-    <div class="flash_error">
-        
-          <p> <%=flash[:error] %> </p>
-          
-      </div>
-<% end %>
+
  
-        <% end %>
+<% end %>
+
+<% if flash[:error] %>
+<div class="flash_error">
+    
+      <p> <%=flash[:error] %> </p>
+      
+  </div>
+<% end %>
       
       
     <div class="wrapper">
