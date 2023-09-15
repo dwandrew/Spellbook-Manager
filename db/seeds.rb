@@ -67,7 +67,7 @@ API.new
         intelligence: monster_info["intelligence"],
         wisdom: monster_info["wisdom"],
         charisma: monster_info["charisma"],
-        proficiencies: monster_info["proficiencies"] ? monster_info["proficiencies"].map {|prof| "<em>#{prof["name"]}</em>: +#{prof["value"]}"}.join(" <br><br>") : nil,
+        proficiencies: monster_info["proficiencies"] ? monster_info["proficiencies"].map {|prof| "<em>#{prof["proficiency"]["name"]}</em>: +#{prof["value"]}"}.join(" <br><br>") : nil,
         damage_vulnerabilities: monster_info["damage_vulnerabilities"].join(", "),
         damage_resistences: monster_info["damage_resistances"].join(", "),
         damage_immunities: monster_info["damage_immunities"].join(", "),
