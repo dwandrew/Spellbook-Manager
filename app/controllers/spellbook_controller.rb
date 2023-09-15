@@ -32,6 +32,11 @@ class SpellbookController < ApplicationController
       @spells[:transmutation] = Spell.all.select{|spell| spell if spell[:school] == "Transmutation"}
       erb:'/spellbook/schools'
     end
+
+    get '/spells/abjuration' do
+      @spells = Spell.all.select{|spell| spell if spell[:school] == "Abjuration"}
+      erb:'/spellbook/spells'
+    end
    
 
 
