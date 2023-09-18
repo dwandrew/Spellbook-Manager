@@ -51,6 +51,7 @@ API.new
             monster_info = API.get_url(monster['url'], "monsters")
             created_monster = Monster.new(
             name: monster_info["name"],
+            image: monster_info["image"],
             monster_type: monster_info["type"],
             monster_subtype: monster_info["subtype"],
             size: monster_info["size"],
