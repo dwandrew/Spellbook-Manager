@@ -6,6 +6,9 @@ class MonsterController < ApplicationController
           if params[:name]
             @monsters = @monsters.select{|mon| mon if mon[:name] == params[:name].downcase.capitalize()}
           end
+          if params[:type]
+            @monsters = @monsters.select{|mon| mon if mon[:monster_type] == params[:type].downcase}
+          end
         end
         erb:'/monsters/monsters'
      end

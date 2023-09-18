@@ -1,3 +1,11 @@
+<% if @monsters.length == 0 %>
+  <table class="spell_table">
+    <tr>
+      <th>No Monsters of that type, or name present</th>
+    </tr>
+  </table>
+<% else %>
+
 <table class="spell_table">
     <tr>
         <th>Name</th>
@@ -187,19 +195,19 @@
                 <% end %>
                 <br>
                 <% end %>
-                <% if monster.actions %>
-                <h4>Actions:</h4>
-                <%=monster.actions.gsub("\n", "<br>")%><br>
-                <br>
+                <% if !monster.actions.empty? %>
+                    <h4>Actions:</h4>
+                    <%=monster.actions.gsub("\n", "<br>")%><br>
+                    <br>
                 <% end %>
                 <% if monster.reactions %>
-                <h4>Reactions</h4>
-                <%=monster.reactions.gsub("\n", "<br>")%>
-                <br>
+                    <h4>Reactions</h4>
+                    <%=monster.reactions.gsub("\n", "<br>")%>
+                    <br>
                 <% end %>
-                <% if monster.legendary_actions %>
-                <h4>Legendary Actions:</h4>
-                <%=monster.legendary_actions.gsub("\n", "<br>")%>
+                <% if !monster.legendary_actions.empty? %>
+                    <h4>Legendary Actions:</h4>
+                    <%=monster.legendary_actions.gsub("\n", "<br>")%>
                 <% end %>
             </p>
 </div> <br> </td>
@@ -208,7 +216,7 @@
 <% end %>
 
 </table>
-
+<% end %>
 
 
 
