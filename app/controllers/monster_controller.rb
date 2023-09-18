@@ -6,6 +6,20 @@ class MonsterController < ApplicationController
           if params[:name]
             @monsters = @monsters.select{|mon| mon if mon[:name] == params[:name].downcase.capitalize()}
           end
+          if params[:type]
+            @monsters = @monsters.select{|mon| mon if mon[:monster_type] == params[:type].downcase}
+          end
+          if params[:cr]
+          cr =  params[:cr]  
+            if cr == '1/2'
+              cr = '0.5'
+            elsif cr == '1/4'
+              cr = '0.25'
+            elsif cr == '1/8'
+              cr = '0.125'
+            end
+            @monsters = @monsters.select{|mon| mon if mon[:challenge_rating] == cr}
+          end
         end
         erb:'/monsters/monsters'
      end
