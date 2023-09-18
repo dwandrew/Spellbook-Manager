@@ -2,6 +2,11 @@ class MonsterController < ApplicationController
     
     get '/monsters' do
         @monsters= Monster.all
+        if !params.values.empty?
+          if params[:name]
+            @monsters = @monsters.select{|mon| mon if mon[:name] == params[:name].downcase.capitalize()}
+          end
+        end
         erb:'/monsters/monsters'
      end
 

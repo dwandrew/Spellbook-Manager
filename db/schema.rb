@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2020_07_22_125109) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_094145) do
   create_table "monsterbook_monsters", force: :cascade do |t|
     t.integer "monster_id"
     t.integer "monsterbook_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2020_07_22_125109) do
     t.integer "monsterbook_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.string "image", default: "none"
   end
 
   create_table "monstersspells", force: :cascade do |t|

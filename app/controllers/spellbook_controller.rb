@@ -2,6 +2,14 @@ class SpellbookController < ApplicationController
 
     get '/spells' do
         @spells= Spell.all
+        if !params.values.empty?
+          if params[:school]
+            @spells = @spells.select{|spell| spell if spell[:school] == params[:school].downcase.capitalize()}
+          end
+          if params[:level]
+            @spells = @spells.select{|spell| spell if spell[:level] == params[:level]}
+          end
+        end
         erb:'/spellbook/spells'
      end
 
@@ -32,8 +40,6 @@ class SpellbookController < ApplicationController
       @spells[:transmutation] = Spell.all.select{|spell| spell if spell[:school] == "Transmutation"}
       erb:'/spellbook/schools'
     end
-   
-
 
     get '/spellbooks/new' do
       if logged_in?
