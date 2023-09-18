@@ -1,3 +1,12 @@
+<% if @spells.length == 0 %>
+  <table class="spell_table">
+    <tr>
+      <th>No Spells of that school, type, or name present</th>
+    </tr>
+  </table>
+<% else %>
+
+
 <table class="spell_table">
     <tr>
         <th>Name</th>
@@ -36,7 +45,7 @@
 
 </table>
 
-
+<% end %>
 
 
 
