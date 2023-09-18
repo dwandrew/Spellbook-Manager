@@ -27,9 +27,6 @@
 <div class="collapse_content">
 <p>
                 <strong>Monster Name:</strong> <%= monster.name %> <br>
-                <% if monster.image %>
-                    <strong>Image:</strong>  <img style="width: 100%;" src= "https://www.dnd5eapi.co<%= monster.image%>"></img>  <br>
-                <% end %>
                 <strong>Challenge Rating:</strong> <% if monster.challenge_rating == "0.125" %>
             <%="1/8" %>
         <% elsif monster.challenge_rating == "0.25" %>
