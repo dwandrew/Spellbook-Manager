@@ -202,20 +202,19 @@ div .collapse_content {
   background-color: #333;
   position: fixed; 
   top: 0; 
-  width: 100%; 
+  width: 15vw;
+  height: 100vh;
 }
 
 .navbar a {
-  float: left;
+  display:block;
   font-size: 16px;
   color: white;
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 .dropdown {
-  float: left;
   overflow: hidden;
 }
 
@@ -236,7 +235,6 @@ div .collapse_content {
 
 .dropdown-content {
   display: none;
-  position: absolute;
   background-color: grey;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
