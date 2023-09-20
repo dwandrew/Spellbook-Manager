@@ -4,7 +4,7 @@ class MonsterController < ApplicationController
         @monsters= Monster.all
         if !params.values.empty?
           if params[:name]
-            @monsters = @monsters.select{|mon| mon if mon[:name] == params[:name].downcase.capitalize()}
+            @monsters = @monsters.select{|mon| mon if mon[:name].downcase.include? params[:name].downcase}
           end
           if params[:type]
             @monsters = @monsters.select{|mon| mon if mon[:monster_type] == params[:type].downcase}
