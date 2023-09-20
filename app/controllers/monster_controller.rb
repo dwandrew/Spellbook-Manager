@@ -2,23 +2,25 @@ class MonsterController < ApplicationController
     
     get '/monsters' do
         @monsters= Monster.all
+        mon_array = []
         if !params.values.empty?
-          if params[:name]
-            @monsters = @monsters.select{|mon| mon if mon[:name].downcase.include? params[:name].downcase}
-          end
-          if params[:type]
-            @monsters = @monsters.select{|mon| mon if mon[:monster_type] == params[:type].downcase}
-          end
-          if params[:cr]
-          cr =  params[:cr]  
-            if cr == '1/2'
-              cr = '0.5'
-            elsif cr == '1/4'
-              cr = '0.25'
-            elsif cr == '1/8'
-              cr = '0.125'
+          if params[:search]
+            @monsters.each{|mon| 
+            if mon[:name].downcase.include? params[:search].downcase
+              mon_array << mon
+            elsif mon[:monster_type] == params[:search].downcase
+              mon_array << mon
+            elsif params[:search] == '1/2' && mon[:challenge_rating] == '0.5'
+              mon_array << mon
+            elsif params[:search] == '1/4' && mon[:challenge_rating] == '0.25'
+              mon_array << mon
+            elsif params[:search] == '1/8' && mon[:challenge_rating] == '0.125'
+              mon_array << mon
+            elsif  mon[:challenge_rating] == params[:search]
+              mon_array << mon
             end
-            @monsters = @monsters.select{|mon| mon if mon[:challenge_rating] == cr}
+          }
+            @monsters = mon_array
           end
         end
         erb:'/monsters/monsters'

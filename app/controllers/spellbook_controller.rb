@@ -2,13 +2,18 @@ class SpellbookController < ApplicationController
 
     get '/spells' do
         @spells= Spell.all
+        spellArray = []
         if !params.values.empty?
-          if params[:school]
-            @spells = @spells.select{|spell| spell if spell[:school] == params[:school].downcase.capitalize()}
-          end
-          if params[:level]
-            @spells = @spells.select{|spell| spell if spell[:level] == params[:level]}
-          end
+            @spells.each{|spell| 
+            if spell[:name].downcase.include? params[:search].downcase
+              spellArray<< spell
+            elsif spell[:school].downcase.include? params[:search].downcase
+              spellArray<< spell
+            elsif spell[:level] == params[:search]
+              spellArray<< spell
+            end
+            }
+          @spells = spellArray
         end
         erb:'/spellbook/spells'
      end

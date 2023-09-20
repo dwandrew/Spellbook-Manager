@@ -78,6 +78,10 @@
                 <a href="/spells">Spells ordered Alphabetically</a>
                 <a href="/spells/level_order">Spells ordered by Level</a>
                 <a href="/spells/school_order">Spells ordered by School</a>
+                <form method= 'GET' action ='/spells' class="nav_search">
+                    <input type="text" name ='search' id='spells_search' value = "" ><br/>
+                    <input type="submit" value ="Spells Search">
+                </form>
               </div>
             </div>
             <div class="dropdown">
@@ -87,7 +91,7 @@
                   <a href="/monsters/challenge">Monsters ordered by CR</a>
                   <a href="/monsters/type">Monsters ordered by Type</a>
                   <form method= 'GET' action ='/monsters' class="nav_search">
-                    <input type="text" name ='name' id='monster_search' value = "" ><br/>
+                    <input type="text" name ='search' id='monster_search' value = "" ><br/>
                     <input type="submit" value ="Monster Search">
                   </form>
 
