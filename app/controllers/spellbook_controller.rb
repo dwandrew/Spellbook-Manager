@@ -5,11 +5,7 @@ class SpellbookController < ApplicationController
         spellArray = []
         if !params.values.empty?
             @spells.each{|spell| 
-            if spell[:name].downcase.include? params[:search].downcase
-              spellArray<< spell
-            elsif spell[:school].downcase.include? params[:search].downcase
-              spellArray<< spell
-            elsif spell[:level] == params[:search]
+            if (spell[:name].downcase.include? params[:search].downcase) || (spell[:school].downcase.include? params[:search].downcase) || spell[:level] == params[:search]
               spellArray<< spell
             end
             }

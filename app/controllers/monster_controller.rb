@@ -6,17 +6,7 @@ class MonsterController < ApplicationController
         if !params.values.empty?
           if params[:search]
             @monsters.each{|mon| 
-            if mon[:name].downcase.include? params[:search].downcase
-              mon_array << mon
-            elsif mon[:monster_type] == params[:search].downcase
-              mon_array << mon
-            elsif params[:search] == '1/2' && mon[:challenge_rating] == '0.5'
-              mon_array << mon
-            elsif params[:search] == '1/4' && mon[:challenge_rating] == '0.25'
-              mon_array << mon
-            elsif params[:search] == '1/8' && mon[:challenge_rating] == '0.125'
-              mon_array << mon
-            elsif  mon[:challenge_rating] == params[:search]
+            if (mon[:name].downcase.include? params[:search].downcase) || (mon[:monster_type].downcase.include? params[:search].downcase) || (mon[:challenge_rating] == params[:search] )|| (params[:search] == '1/2' && mon[:challenge_rating] == '0.5') || (params[:search] == '1/4' && mon[:challenge_rating] == '0.25') || (params[:search] == '1/8' && mon[:challenge_rating] == '0.125')
               mon_array << mon
             end
           }
